@@ -83,3 +83,79 @@ html[data-theme] .badge-success   { background: var(--badge-success-bg) !importa
 html[data-theme] .badge-error     { background: var(--badge-error-bg) !important;     color: var(--badge-error-color) !important;     border-color: transparent !important; }
 html[data-theme] .badge-warning   { background: var(--badge-warning-bg) !important;   color: var(--badge-warning-color) !important;   border-color: transparent !important; }
 html[data-theme] .badge-secondary { background: var(--badge-secondary-bg) !important; color: var(--badge-secondary-color) !important; border-color: transparent !important; }
+
+/* ─── Neo Brutalism — shared across all four themes ─────────────────────── */
+
+html[data-theme^="neobrutalism"] .btn {
+  box-shadow: var(--brutal-shadow) !important;
+}
+html[data-theme^="neobrutalism"] .btn:hover {
+  translate: 1px 1px;
+  box-shadow: 3px 3px 0 var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"] .btn-primary {
+  background: var(--color-primary) !important;
+  border: 3px solid var(--brutal-shadow-color) !important;
+  color: var(--color-primary-content) !important;
+  filter: none !important;
+}
+html[data-theme^="neobrutalism"] .btn-primary:hover {
+  filter: brightness(0.92) !important;
+}
+
+html[data-theme^="neobrutalism"] .btn-outline {
+  border-color: var(--brutal-shadow-color) !important;
+  color: var(--color-base-content) !important;
+}
+html[data-theme^="neobrutalism"] .btn-outline:hover {
+  background: var(--color-base-200) !important;
+  border-color: var(--brutal-shadow-color) !important;
+  color: var(--color-base-content) !important;
+}
+
+html[data-theme^="neobrutalism"] .btn-ghost {
+  color: var(--color-base-content) !important;
+}
+html[data-theme^="neobrutalism"] .btn-ghost:hover {
+  background: var(--color-base-200) !important;
+  color: var(--color-base-content) !important;
+}
+
+html[data-theme^="neobrutalism"] .input,
+html[data-theme^="neobrutalism"] .select,
+html[data-theme^="neobrutalism"] .textarea {
+  background: var(--color-base-100) !important;
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
+}
+html[data-theme^="neobrutalism"] .input:focus,
+html[data-theme^="neobrutalism"] .select:focus,
+html[data-theme^="neobrutalism"] .textarea:focus {
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
+  outline: none;
+}
+
+html[data-theme^="neobrutalism"] .card {
+  box-shadow: var(--brutal-shadow) !important;
+  border: 3px solid var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"] .badge {
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: 2px 2px 0 var(--brutal-shadow-color) !important;
+}
+html[data-theme^="neobrutalism"] .badge-success,
+html[data-theme^="neobrutalism"] .badge-error,
+html[data-theme^="neobrutalism"] .badge-warning,
+html[data-theme^="neobrutalism"] .badge-secondary {
+  border-color: var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"] .modal-box {
+  background: var(--color-base-100) !important;
+  backdrop-filter: none !important;
+  border: 3px solid var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
+}
