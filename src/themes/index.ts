@@ -15,6 +15,12 @@ export enum Themes {
   WIN95 = "win95",
   MACCLASSIC = "macclassic",
 
+  // Neo Brutalism themes
+  NEOBRUTALISM = "neobrutalism",
+  NEOBRUTALISM_DARK = "neobrutalism-dark",
+  NEOBRUTALISM_YELLOW = "neobrutalism-yellow",
+  NEOBRUTALISM_YELLOW_DARK = "neobrutalism-yellow-dark",
+
   // DaisyUI built-ins (available when daisyui themes are enabled)
   LIGHT = "light",
   DARK = "dark",

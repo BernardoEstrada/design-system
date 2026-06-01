@@ -18,6 +18,7 @@
 @import "./themes/crt1990.css";
 @import "./themes/win95.css";
 @import "./themes/macclassic.css";
+@import "./themes/neobrutalism.css";
 
 /* Component-level overrides driven by per-theme CSS vars */
 @import "./styles/overrides.css";
