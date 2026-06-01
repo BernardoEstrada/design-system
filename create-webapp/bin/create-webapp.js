@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { execSync } = require("child_process");
+const degit = require("degit");
 const { createInterface } = require("readline");
 const { existsSync, readFileSync, writeFileSync } = require("fs");
 const path = require("path");
@@ -37,12 +37,15 @@ async function main() {
   console.log(`\nScaffolding ${projectName}...\n`);
 
   try {
-    execSync(
-      `npx degit BernardoEstrada/design-system/templates/react-app "${projectName}" --force`,
-      { stdio: "inherit" }
-    );
-  } catch {
-    console.error("\nFailed to clone template. Check your internet connection.");
+    const emitter = degit("BernardoEstrada/design-system/templates/react-app", {
+      cache: false,
+      force: true,
+      verbose: false,
+    });
+    await emitter.clone(projectName);
+  } catch (err) {
+    console.error("\nFailed to clone template:", err.message);
+    console.error("Check your internet connection and try again.");
     process.exit(1);
   }
 
