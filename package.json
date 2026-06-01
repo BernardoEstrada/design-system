@@ -1,5 +1,5 @@
 {
-  "name": "@berni/design-system",
+  "name": "@bernardoestrada/design-system",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -16,6 +16,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "tsc -b && vite build",
@@ -27,6 +31,9 @@
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "dependencies": {
+    "lucide-react": "^1.17.0"
   },
   "devDependencies": {
     "@storybook/addon-themes": "^10.4.1",

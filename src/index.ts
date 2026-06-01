@@ -6,3 +6,4 @@ export { Input } from "./components/Input/Input";
 export { Card } from "./components/Card/Card";
 
 export { Themes, DEFAULT_DARK, DEFAULT_LIGHT, applyTheme } from "./themes/index";
+export * from "lucide-react";
