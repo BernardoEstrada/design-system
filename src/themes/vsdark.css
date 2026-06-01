@@ -1,0 +1,30 @@
+/* VS Code Dark+ */
+[data-theme="vsdark"] {
+  color-scheme: dark;
+  --color-base-100: #1e1e1e;
+  --color-base-200: #252526;
+  --color-base-300: #2d2d30;
+  --color-base-content: oklch(92% 0.01 0);
+  --color-primary: #569cd6;
+  --color-primary-content: oklch(15% 0.01 0);
+  --color-secondary: #4ec9b0;
+  --color-secondary-content: oklch(15% 0.01 0);
+  --color-accent: #c586c0;
+  --color-accent-content: oklch(92% 0.01 0);
+  --color-neutral: #1e1e1e;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #569cd6;
+  --color-info-content: oklch(15% 0.01 0);
+  --color-success: #4ec9b0;
+  --color-success-content: oklch(15% 0.01 0);
+  --color-warning: #dcdcaa;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #f48771;
+  --color-error-content: oklch(15% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

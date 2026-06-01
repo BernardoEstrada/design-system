@@ -1,0 +1,30 @@
+/* Monokai */
+[data-theme="monokai"] {
+  color-scheme: dark;
+  --color-base-100: #272822;
+  --color-base-200: #3e3d32;
+  --color-base-300: #49483e;
+  --color-base-content: oklch(92% 0.01 0);
+  --color-primary: #a6e22e;
+  --color-primary-content: oklch(15% 0.01 0);
+  --color-secondary: #66d9ef;
+  --color-secondary-content: oklch(15% 0.01 0);
+  --color-accent: #ae81ff;
+  --color-accent-content: oklch(15% 0.01 0);
+  --color-neutral: #272822;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #66d9ef;
+  --color-info-content: oklch(15% 0.01 0);
+  --color-success: #a6e22e;
+  --color-success-content: oklch(15% 0.01 0);
+  --color-warning: #e6db74;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #f92672;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

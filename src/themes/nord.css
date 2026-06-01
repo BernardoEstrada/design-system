@@ -1,0 +1,30 @@
+/* Nord */
+[data-theme="nord"] {
+  color-scheme: dark;
+  --color-base-100: #2e3440;
+  --color-base-200: #3b4252;
+  --color-base-300: #434c5e;
+  --color-base-content: oklch(92% 0.01 0);
+  --color-primary: #88c0d0;
+  --color-primary-content: oklch(15% 0.01 0);
+  --color-secondary: #8fbcbb;
+  --color-secondary-content: oklch(15% 0.01 0);
+  --color-accent: #b48ead;
+  --color-accent-content: oklch(15% 0.01 0);
+  --color-neutral: #2e3440;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #88c0d0;
+  --color-info-content: oklch(15% 0.01 0);
+  --color-success: #a3be8c;
+  --color-success-content: oklch(15% 0.01 0);
+  --color-warning: #ebcb8b;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #bf616a;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

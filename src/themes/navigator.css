@@ -1,0 +1,217 @@
+/* ─── Navigator Dark ─────────────────────────────────────────────────────── */
+
+[data-theme="navigator"] {
+  color-scheme: dark;
+  --color-base-100: oklch(16% 0.028 275);
+  --color-base-200: oklch(11% 0.022 275);
+  --color-base-300: oklch(22% 0.032 272);
+  --color-base-content: oklch(88% 0.01 268);
+  --color-primary: oklch(67% 0.24 295);
+  --color-primary-content: oklch(98% 0.005 295);
+  --color-secondary: oklch(62% 0.2 258);
+  --color-secondary-content: oklch(98% 0 0);
+  --color-accent: oklch(72% 0.16 200);
+  --color-accent-content: oklch(10% 0.03 200);
+  --color-neutral: oklch(24% 0.026 275);
+  --color-neutral-content: oklch(84% 0.01 268);
+  --color-info: oklch(62% 0.16 222);
+  --color-info-content: oklch(98% 0 0);
+  --color-success: oklch(62% 0.17 152);
+  --color-success-content: oklch(98% 0 0);
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: oklch(14% 0.02 82);
+  --color-error: oklch(62% 0.22 22);
+  --color-error-content: oklch(98% 0 0);
+  --radius-selector: 99rem;
+  --radius-field: 0.55rem;
+  --radius-box: 0.9rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+
+  /* Glass */
+  --glass-bg: oklch(16% 0.028 275 / 52%);
+  --glass-filter: blur(16px);
+  --glass-border: oklch(100% 0 0 / 8%);
+  --glass-shadow: 0 2px 20px oklch(0% 0 0 / 32%), inset 0 1px 0 oklch(100% 0 0 / 6%);
+  --glass-hover-border: oklch(100% 0 0 / 13%);
+  --glass-hover-shadow: 0 4px 28px oklch(0% 0 0 / 38%), inset 0 1px 0 oklch(100% 0 0 / 9%);
+
+  /* Buttons */
+  --btn-primary-bg: linear-gradient(90deg, oklch(56% 0.27 295), oklch(53% 0.23 258));
+  --btn-primary-bg-hover: linear-gradient(90deg, oklch(62% 0.27 295), oklch(58% 0.23 258));
+  --btn-primary-filter: drop-shadow(0 0 8px oklch(56% 0.27 295 / 35%)) drop-shadow(0 1px 3px oklch(0% 0 0 / 25%));
+  --btn-primary-filter-hover: drop-shadow(0 0 14px oklch(56% 0.27 295 / 50%)) drop-shadow(0 2px 6px oklch(0% 0 0 / 30%));
+  --btn-outline-border: oklch(100% 0 0 / 14%);
+  --btn-outline-color: oklch(78% 0.01 268);
+  --btn-outline-bg-hover: oklch(100% 0 0 / 7%);
+  --btn-outline-border-hover: oklch(100% 0 0 / 22%);
+  --btn-outline-color-hover: oklch(92% 0.005 268);
+  --btn-ghost-color: oklch(68% 0.01 268);
+  --btn-ghost-bg-hover: oklch(100% 0 0 / 6%);
+  --btn-ghost-color-hover: oklch(88% 0.008 268);
+
+  /* Fields */
+  --field-bg: oklch(16% 0.028 275 / 55%);
+  --field-border: oklch(100% 0 0 / 10%);
+  --field-blur: blur(8px);
+  --field-focus-border: oklch(67% 0.24 295 / 55%);
+  --field-focus-shadow: 0 0 0 3px oklch(67% 0.24 295 / 15%);
+
+  /* Badges */
+  --badge-success-bg: oklch(62% 0.17 200 / 18%);
+  --badge-success-color: oklch(72% 0.15 200);
+  --badge-error-bg: oklch(62% 0.22 22 / 18%);
+  --badge-error-color: oklch(72% 0.18 22);
+  --badge-warning-bg: oklch(72% 0.18 82 / 18%);
+  --badge-warning-color: oklch(78% 0.16 82);
+  --badge-secondary-bg: oklch(62% 0.2 258 / 18%);
+  --badge-secondary-color: oklch(72% 0.16 258);
+
+  /* Modal */
+  --modal-bg: oklch(13% 0.026 278 / 82%);
+  --modal-blur: blur(24px);
+  --modal-border: oklch(100% 0 0 / 10%);
+  --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 48%), 0 8px 40px oklch(0% 0 0 / 50%);
+}
+
+html[data-theme="navigator"] {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(145deg, oklch(10% 0.035 295) 0%, oklch(11% 0.028 265) 50%, oklch(9% 0.022 235) 100%);
+  min-height: 100vh;
+}
+
+html[data-theme="navigator"] body,
+html[data-theme="navigator"] .bg-base-200 {
+  background: transparent;
+}
+
+html[data-theme="navigator"] .font-black.text-primary {
+  background: linear-gradient(90deg, #c084fc 0%, #818cf8 55%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="navigator"] h1 {
+  background: linear-gradient(90deg, oklch(94% 0.008 268) 0%, oklch(78% 0.16 295) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="navigator"] .bg-base-200 {
+  background: oklch(14% 0.025 275 / 55%) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid oklch(100% 0 0 / 7%);
+  border-radius: var(--radius-box);
+}
+
+/* ─── Navigator Light ────────────────────────────────────────────────────── */
+
+[data-theme="navigator-light"] {
+  color-scheme: light;
+  --color-base-100: oklch(98.5% 0.007 272);
+  --color-base-200: oklch(94% 0.014 270);
+  --color-base-300: oklch(88% 0.02 268);
+  --color-base-content: oklch(18% 0.022 275);
+  --color-primary: oklch(54% 0.27 295);
+  --color-primary-content: oklch(99% 0.004 295);
+  --color-secondary: oklch(50% 0.22 258);
+  --color-secondary-content: oklch(99% 0 0);
+  --color-accent: oklch(52% 0.18 200);
+  --color-accent-content: oklch(99% 0 0);
+  --color-neutral: oklch(22% 0.025 275);
+  --color-neutral-content: oklch(96% 0.006 272);
+  --color-info: oklch(50% 0.16 222);
+  --color-info-content: oklch(99% 0 0);
+  --color-success: oklch(48% 0.17 152);
+  --color-success-content: oklch(99% 0 0);
+  --color-warning: oklch(64% 0.17 82);
+  --color-warning-content: oklch(16% 0.03 82);
+  --color-error: oklch(52% 0.22 22);
+  --color-error-content: oklch(99% 0 0);
+  --radius-selector: 99rem;
+  --radius-field: 0.55rem;
+  --radius-box: 0.9rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+
+  /* Glass */
+  --glass-bg: oklch(99% 0.005 272 / 65%);
+  --glass-filter: blur(16px);
+  --glass-border: oklch(100% 0 0 / 62%);
+  --glass-shadow: 0 2px 16px oklch(18% 0.022 275 / 8%), inset 0 1px 0 oklch(100% 0 0 / 80%);
+  --glass-hover-border: oklch(100% 0 0 / 78%);
+  --glass-hover-shadow: 0 4px 24px oklch(18% 0.022 275 / 12%), inset 0 1px 0 oklch(100% 0 0 / 90%);
+
+  /* Buttons */
+  --btn-primary-bg: linear-gradient(90deg, oklch(52% 0.27 295), oklch(49% 0.23 258));
+  --btn-primary-bg-hover: linear-gradient(90deg, oklch(57% 0.27 295), oklch(54% 0.23 258));
+  --btn-primary-filter: drop-shadow(0 0 7px oklch(52% 0.27 295 / 30%)) drop-shadow(0 1px 3px oklch(0% 0 0 / 12%));
+  --btn-primary-filter-hover: drop-shadow(0 0 12px oklch(52% 0.27 295 / 45%)) drop-shadow(0 2px 6px oklch(0% 0 0 / 16%));
+  --btn-outline-border: oklch(18% 0.022 275 / 18%);
+  --btn-outline-color: oklch(28% 0.025 275);
+  --btn-outline-bg-hover: oklch(18% 0.022 275 / 6%);
+  --btn-outline-border-hover: oklch(18% 0.022 275 / 28%);
+  --btn-outline-color-hover: oklch(18% 0.022 275);
+  --btn-ghost-color: oklch(45% 0.02 275);
+  --btn-ghost-bg-hover: oklch(18% 0.022 275 / 7%);
+  --btn-ghost-color-hover: oklch(25% 0.02 275);
+
+  /* Fields */
+  --field-bg: oklch(100% 0 0 / 58%);
+  --field-border: oklch(18% 0.022 275 / 14%);
+  --field-blur: blur(8px);
+  --field-focus-border: oklch(54% 0.27 295 / 50%);
+  --field-focus-shadow: 0 0 0 3px oklch(54% 0.27 295 / 14%);
+
+  /* Badges */
+  --badge-success-bg: oklch(48% 0.17 152 / 14%);
+  --badge-success-color: oklch(36% 0.14 152);
+  --badge-error-bg: oklch(52% 0.22 22 / 14%);
+  --badge-error-color: oklch(42% 0.2 22);
+  --badge-warning-bg: oklch(64% 0.17 82 / 18%);
+  --badge-warning-color: oklch(46% 0.14 82);
+  --badge-secondary-bg: oklch(50% 0.22 258 / 14%);
+  --badge-secondary-color: oklch(40% 0.2 258);
+
+  /* Modal */
+  --modal-bg: oklch(98% 0.007 272 / 85%);
+  --modal-blur: blur(24px);
+  --modal-border: oklch(100% 0 0 / 60%);
+  --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 14%), 0 8px 32px oklch(18% 0.022 275 / 16%);
+}
+
+html[data-theme="navigator-light"] {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(145deg, oklch(92% 0.028 295) 0%, oklch(96% 0.016 268) 50%, oklch(93% 0.015 232) 100%);
+  min-height: 100vh;
+}
+
+html[data-theme="navigator-light"] body,
+html[data-theme="navigator-light"] .bg-base-200 {
+  background: transparent;
+}
+
+html[data-theme="navigator-light"] .font-black.text-primary {
+  background: linear-gradient(90deg, #9333ea 0%, #6366f1 55%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="navigator-light"] h1 {
+  background: linear-gradient(90deg, oklch(18% 0.02 278) 0%, oklch(52% 0.27 295) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="navigator-light"] .bg-base-200 {
+  background: oklch(96% 0.012 270 / 60%) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid oklch(100% 0 0 / 52%);
+  border-radius: var(--radius-box);
+}

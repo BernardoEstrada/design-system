@@ -1,0 +1,30 @@
+/* GitHub Light */
+[data-theme="githublight"] {
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f6f8fa;
+  --color-base-300: #eaeef2;
+  --color-base-content: oklch(15% 0.01 0);
+  --color-primary: #0969da;
+  --color-primary-content: oklch(92% 0.01 0);
+  --color-secondary: #0550ae;
+  --color-secondary-content: oklch(92% 0.01 0);
+  --color-accent: #8250df;
+  --color-accent-content: oklch(92% 0.01 0);
+  --color-neutral: #f6f8fa;
+  --color-neutral-content: oklch(15% 0.01 0);
+  --color-info: #0969da;
+  --color-info-content: oklch(92% 0.01 0);
+  --color-success: #1a7f37;
+  --color-success-content: oklch(92% 0.01 0);
+  --color-warning: #9a6700;
+  --color-warning-content: oklch(92% 0.01 0);
+  --color-error: #cf222e;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

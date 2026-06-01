@@ -1,0 +1,30 @@
+/* CRT 1990 (Amber phosphor monitor) */
+[data-theme="crt1990"] {
+  color-scheme: dark;
+  --color-base-100: #3b2617;
+  --color-base-200: #2b1b12;
+  --color-base-300: #1a0f09;
+  --color-base-content: oklch(92% 0.01 0);
+  --color-primary: #ffdd73;
+  --color-primary-content: oklch(15% 0.01 0);
+  --color-secondary: #f4a261;
+  --color-secondary-content: oklch(15% 0.01 0);
+  --color-accent: #e76f51;
+  --color-accent-content: oklch(92% 0.01 0);
+  --color-neutral: #2b1b12;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #ffdd73;
+  --color-info-content: oklch(15% 0.01 0);
+  --color-success: #b4f8c8;
+  --color-success-content: oklch(15% 0.01 0);
+  --color-warning: #f4a261;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #f94144;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

@@ -1,0 +1,85 @@
+/* ─── Glass surface — all themes via CSS vars ────────────────────────────── */
+
+html[data-theme="navigator"] .bg-base-100,
+html[data-theme="navigator-light"] .bg-base-100,
+html[data-theme="command"] .bg-base-100,
+html[data-theme="command-light"] .bg-base-100 {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow) !important;
+}
+
+/* Navigator: additional hover glow */
+html[data-theme="navigator"] .bg-base-100:hover,
+html[data-theme="navigator-light"] .bg-base-100:hover {
+  border-color: var(--glass-hover-border);
+  box-shadow: var(--glass-hover-shadow) !important;
+}
+
+/* ─── Modal glass — all themes via CSS vars ──────────────────────────────── */
+
+html[data-theme] .modal-backdrop {
+  /* Transparent so modal-box backdrop-filter blurs real page content.
+     Darkening comes from modal-box box-shadow spread instead. */
+  background: transparent !important;
+}
+
+html[data-theme] .modal-box {
+  background: var(--modal-bg) !important;
+  backdrop-filter: var(--modal-blur);
+  border: 1px solid var(--modal-border);
+  box-shadow: var(--modal-shadow) !important;
+}
+
+/* ─── Buttons — all themes via CSS vars ──────────────────────────────────── */
+
+html[data-theme] .btn { box-shadow: none; }
+
+html[data-theme] .btn-primary {
+  background: var(--btn-primary-bg) !important;
+  border: 0 !important;
+  filter: var(--btn-primary-filter, none);
+}
+html[data-theme] .btn-primary:hover {
+  background: var(--btn-primary-bg-hover, var(--btn-primary-bg)) !important;
+  filter: var(--btn-primary-filter-hover, none);
+}
+
+html[data-theme] .btn-outline {
+  border-color: var(--btn-outline-border);
+  color: var(--btn-outline-color);
+}
+html[data-theme] .btn-outline:hover {
+  background: var(--btn-outline-bg-hover) !important;
+  border-color: var(--btn-outline-border-hover);
+  color: var(--btn-outline-color-hover);
+}
+
+html[data-theme] .btn-ghost { color: var(--btn-ghost-color); }
+html[data-theme] .btn-ghost:hover {
+  background: var(--btn-ghost-bg-hover) !important;
+  color: var(--btn-ghost-color-hover);
+}
+
+/* ─── Fields — all themes via CSS vars ──────────────────────────────────── */
+
+html[data-theme] .input,
+html[data-theme] .select {
+  background: var(--field-bg) !important;
+  border-color: var(--field-border) !important;
+  backdrop-filter: var(--field-blur, none);
+}
+html[data-theme] .input:focus,
+html[data-theme] .select:focus {
+  border-color: var(--field-focus-border) !important;
+  box-shadow: var(--field-focus-shadow) !important;
+  outline: none;
+}
+
+/* ─── Badges — all themes via CSS vars ──────────────────────────────────── */
+
+html[data-theme] .badge-success   { background: var(--badge-success-bg) !important;   color: var(--badge-success-color) !important;   border-color: transparent !important; }
+html[data-theme] .badge-error     { background: var(--badge-error-bg) !important;     color: var(--badge-error-color) !important;     border-color: transparent !important; }
+html[data-theme] .badge-warning   { background: var(--badge-warning-bg) !important;   color: var(--badge-warning-color) !important;   border-color: transparent !important; }
+html[data-theme] .badge-secondary { background: var(--badge-secondary-bg) !important; color: var(--badge-secondary-color) !important; border-color: transparent !important; }

@@ -1,0 +1,30 @@
+/* Windows 95 */
+[data-theme="win95"] {
+  color-scheme: light;
+  --color-base-100: #c0c0c0;
+  --color-base-200: #a0a0a0;
+  --color-base-300: #808080;
+  --color-base-content: oklch(15% 0.01 0);
+  --color-primary: #000080;
+  --color-primary-content: oklch(92% 0.01 0);
+  --color-secondary: #008080;
+  --color-secondary-content: oklch(92% 0.01 0);
+  --color-accent: #c0c0c0;
+  --color-accent-content: oklch(15% 0.01 0);
+  --color-neutral: #808080;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #000080;
+  --color-info-content: oklch(92% 0.01 0);
+  --color-success: #008000;
+  --color-success-content: oklch(92% 0.01 0);
+  --color-warning: #d4aa00;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #800000;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

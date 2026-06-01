@@ -1,0 +1,30 @@
+/* Terminal (Matrix-style) */
+[data-theme="terminal"] {
+  color-scheme: dark;
+  --color-base-100: #0d1117;
+  --color-base-200: #161b22;
+  --color-base-300: #21262d;
+  --color-base-content: oklch(92% 0.01 0);
+  --color-primary: #00ff41;
+  --color-primary-content: oklch(15% 0.01 0);
+  --color-secondary: #39ff14;
+  --color-secondary-content: oklch(15% 0.01 0);
+  --color-accent: #7fff00;
+  --color-accent-content: oklch(15% 0.01 0);
+  --color-neutral: #0d1117;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #58a6ff;
+  --color-info-content: oklch(15% 0.01 0);
+  --color-success: #00ff41;
+  --color-success-content: oklch(15% 0.01 0);
+  --color-warning: #d29922;
+  --color-warning-content: oklch(15% 0.01 0);
+  --color-error: #f85149;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

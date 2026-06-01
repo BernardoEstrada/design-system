@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: false;
+  logs: false;
+}
+
+/* App themes */
+@import "./themes/navigator.css";
+@import "./themes/command.css";
+
+/* Editor themes */
+@import "./themes/vsdark.css";
+@import "./themes/monokai.css";
+@import "./themes/nord.css";
+@import "./themes/githublight.css";
+@import "./themes/terminal.css";
+@import "./themes/crt1990.css";
+@import "./themes/win95.css";
+@import "./themes/macclassic.css";
+
+/* Component-level overrides driven by per-theme CSS vars */
+@import "./styles/overrides.css";

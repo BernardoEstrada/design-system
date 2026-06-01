@@ -1,0 +1,30 @@
+/* Mac Classic (System 7 era) */
+[data-theme="macclassic"] {
+  color-scheme: light;
+  --color-base-100: #d9d9d9;
+  --color-base-200: #c0c0c0;
+  --color-base-300: #a3a3a3;
+  --color-base-content: oklch(15% 0.01 0);
+  --color-primary: #000000;
+  --color-primary-content: oklch(92% 0.01 0);
+  --color-secondary: #4d4d4d;
+  --color-secondary-content: oklch(92% 0.01 0);
+  --color-accent: #0000aa;
+  --color-accent-content: oklch(92% 0.01 0);
+  --color-neutral: #808080;
+  --color-neutral-content: oklch(92% 0.01 0);
+  --color-info: #0000aa;
+  --color-info-content: oklch(92% 0.01 0);
+  --color-success: #007200;
+  --color-success-content: oklch(92% 0.01 0);
+  --color-warning: #a06000;
+  --color-warning-content: oklch(92% 0.01 0);
+  --color-error: #aa0000;
+  --color-error-content: oklch(92% 0.01 0);
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

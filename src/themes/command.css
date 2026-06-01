@@ -1,0 +1,205 @@
+/* ─── Command Dark ───────────────────────────────────────────────────────── */
+
+[data-theme="command"] {
+  color-scheme: dark;
+  --color-base-100: oklch(13.5% 0.005 270);
+  --color-base-200: oklch(9.5% 0.004 270);
+  --color-base-300: oklch(18% 0.007 270);
+  --color-base-content: oklch(76% 0.006 268);
+  --color-primary: oklch(65% 0.24 24);
+  --color-primary-content: oklch(98% 0 0);
+  --color-secondary: oklch(62% 0.18 295);
+  --color-secondary-content: oklch(98% 0 0);
+  --color-accent: oklch(66% 0.17 152);
+  --color-accent-content: oklch(10% 0 0);
+  --color-neutral: oklch(20% 0.006 270);
+  --color-neutral-content: oklch(72% 0.005 268);
+  --color-info: oklch(60% 0.16 222);
+  --color-info-content: oklch(98% 0 0);
+  --color-success: oklch(64% 0.18 152);
+  --color-success-content: oklch(98% 0 0);
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: oklch(14% 0.02 82);
+  --color-error: oklch(64% 0.24 24);
+  --color-error-content: oklch(98% 0 0);
+  --radius-selector: 0.45rem;
+  --radius-field: 0.45rem;
+  --radius-box: 0.55rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+
+  /* Glass */
+  --glass-bg: oklch(13.5% 0.005 270 / 85%);
+  --glass-filter: blur(8px);
+  --glass-border: oklch(100% 0 0 / 8%);
+  --glass-shadow: 0 1px 3px oklch(0% 0 0 / 40%), 0 4px 16px oklch(0% 0 0 / 28%);
+
+  /* Buttons */
+  --btn-primary-bg: oklch(65% 0.24 24);
+  --btn-primary-bg-hover: oklch(69% 0.24 24);
+  --btn-outline-border: oklch(100% 0 0 / 10%);
+  --btn-outline-color: oklch(60% 0.005 270);
+  --btn-outline-bg-hover: oklch(100% 0 0 / 6%);
+  --btn-outline-border-hover: oklch(100% 0 0 / 16%);
+  --btn-outline-color-hover: oklch(80% 0.005 270);
+  --btn-ghost-color: oklch(50% 0.005 270);
+  --btn-ghost-bg-hover: oklch(100% 0 0 / 5%);
+  --btn-ghost-color-hover: oklch(72% 0.005 270);
+
+  /* Fields */
+  --field-bg: oklch(17% 0.006 270);
+  --field-border: oklch(100% 0 0 / 7%);
+  --field-focus-border: oklch(65% 0.24 24 / 50%);
+  --field-focus-shadow: 0 0 0 3px oklch(65% 0.24 24 / 12%);
+
+  /* Badges */
+  --badge-success-bg: oklch(64% 0.18 152 / 16%);
+  --badge-success-color: oklch(66% 0.17 152);
+  --badge-error-bg: oklch(65% 0.24 24 / 16%);
+  --badge-error-color: oklch(65% 0.22 24);
+  --badge-warning-bg: oklch(72% 0.18 82 / 16%);
+  --badge-warning-color: oklch(72% 0.16 82);
+  --badge-secondary-bg: oklch(62% 0.18 295 / 16%);
+  --badge-secondary-color: oklch(65% 0.16 295);
+
+  /* Modal */
+  --modal-bg: oklch(13.5% 0.005 270 / 90%);
+  --modal-blur: blur(10px);
+  --modal-border: oklch(100% 0 0 / 8%);
+  --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 55%), 0 4px 24px oklch(0% 0 0 / 40%);
+}
+
+html[data-theme="command"] {
+  font-family: 'DM Sans', sans-serif;
+  background: oklch(9% 0.004 270);
+  min-height: 100vh;
+}
+
+html[data-theme="command"] body,
+html[data-theme="command"] .bg-base-200 {
+  background: transparent;
+}
+
+html[data-theme="command"] .sticky.bg-base-100 {
+  background: oklch(9% 0.004 270) !important;
+  border-color: oklch(100% 0 0 / 5%) !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+}
+
+html[data-theme="command"] .bg-base-100.rounded-xl {
+  border-radius: 7px !important;
+  border-color: oklch(100% 0 0 / 5%) !important;
+  transition: background 0.1s, border-color 0.1s;
+}
+html[data-theme="command"] .bg-base-100.rounded-xl:hover {
+  background: oklch(17% 0.006 270) !important;
+  border-color: oklch(100% 0 0 / 9%) !important;
+}
+
+html[data-theme="command"] .font-mono { font-family: 'IBM Plex Mono', monospace; }
+html[data-theme="command"] .font-black.text-primary { letter-spacing: -0.03em; }
+
+/* ─── Command Light ──────────────────────────────────────────────────────── */
+
+[data-theme="command-light"] {
+  color-scheme: light;
+  --color-base-100: oklch(99% 0.002 268);
+  --color-base-200: oklch(96% 0.004 265);
+  --color-base-300: oklch(91% 0.007 262);
+  --color-base-content: oklch(13% 0.006 268);
+  --color-primary: oklch(58% 0.24 24);
+  --color-primary-content: oklch(99% 0 0);
+  --color-secondary: oklch(50% 0.18 295);
+  --color-secondary-content: oklch(99% 0 0);
+  --color-accent: oklch(52% 0.17 152);
+  --color-accent-content: oklch(99% 0 0);
+  --color-neutral: oklch(18% 0.005 268);
+  --color-neutral-content: oklch(96% 0.003 268);
+  --color-info: oklch(50% 0.16 222);
+  --color-info-content: oklch(99% 0 0);
+  --color-success: oklch(50% 0.18 152);
+  --color-success-content: oklch(99% 0 0);
+  --color-warning: oklch(64% 0.17 82);
+  --color-warning-content: oklch(16% 0.03 82);
+  --color-error: oklch(58% 0.24 24);
+  --color-error-content: oklch(99% 0 0);
+  --radius-selector: 0.45rem;
+  --radius-field: 0.45rem;
+  --radius-box: 0.55rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+
+  /* Glass */
+  --glass-bg: oklch(99% 0 0 / 88%);
+  --glass-filter: blur(8px);
+  --glass-border: oklch(0% 0 0 / 8%);
+  --glass-shadow: 0 1px 3px oklch(0% 0 0 / 6%), 0 4px 12px oklch(0% 0 0 / 4%);
+
+  /* Buttons */
+  --btn-primary-bg: oklch(58% 0.24 24);
+  --btn-primary-bg-hover: oklch(62% 0.24 24);
+  --btn-outline-border: oklch(0% 0 0 / 14%);
+  --btn-outline-color: oklch(30% 0.005 268);
+  --btn-outline-bg-hover: oklch(0% 0 0 / 4%);
+  --btn-outline-border-hover: oklch(0% 0 0 / 20%);
+  --btn-outline-color-hover: oklch(15% 0.005 268);
+  --btn-ghost-color: oklch(50% 0.005 268);
+  --btn-ghost-bg-hover: oklch(0% 0 0 / 4%);
+  --btn-ghost-color-hover: oklch(20% 0.005 268);
+
+  /* Fields */
+  --field-bg: oklch(100% 0 0);
+  --field-border: oklch(0% 0 0 / 10%);
+  --field-focus-border: oklch(58% 0.24 24 / 50%);
+  --field-focus-shadow: 0 0 0 3px oklch(58% 0.24 24 / 12%);
+
+  /* Badges */
+  --badge-success-bg: oklch(50% 0.18 152 / 12%);
+  --badge-success-color: oklch(36% 0.15 152);
+  --badge-error-bg: oklch(58% 0.24 24 / 12%);
+  --badge-error-color: oklch(48% 0.22 24);
+  --badge-warning-bg: oklch(64% 0.17 82 / 16%);
+  --badge-warning-color: oklch(44% 0.14 82);
+  --badge-secondary-bg: oklch(50% 0.18 295 / 12%);
+  --badge-secondary-color: oklch(40% 0.15 295);
+
+  /* Modal */
+  --modal-bg: oklch(99% 0 0 / 92%);
+  --modal-blur: blur(10px);
+  --modal-border: oklch(0% 0 0 / 8%);
+  --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 18%), 0 4px 20px oklch(0% 0 0 / 10%);
+}
+
+html[data-theme="command-light"] {
+  font-family: 'DM Sans', sans-serif;
+  background: oklch(96% 0.004 265);
+  min-height: 100vh;
+}
+
+html[data-theme="command-light"] body,
+html[data-theme="command-light"] .bg-base-200 {
+  background: transparent;
+}
+
+html[data-theme="command-light"] .sticky.bg-base-100 {
+  background: oklch(100% 0 0) !important;
+  border-color: oklch(0% 0 0 / 8%) !important;
+  box-shadow: 0 1px 0 oklch(0% 0 0 / 6%) !important;
+  backdrop-filter: none;
+}
+
+html[data-theme="command-light"] .bg-base-100.rounded-xl {
+  border-radius: 7px !important;
+  border-color: oklch(0% 0 0 / 6%) !important;
+  transition: background 0.1s, border-color 0.1s;
+}
+html[data-theme="command-light"] .bg-base-100.rounded-xl:hover {
+  background: oklch(97.5% 0.003 265) !important;
+  border-color: oklch(0% 0 0 / 9%) !important;
+}
+
+html[data-theme="command-light"] .font-mono { font-family: 'IBM Plex Mono', monospace; }
+html[data-theme="command-light"] .font-black.text-primary { letter-spacing: -0.03em; }
