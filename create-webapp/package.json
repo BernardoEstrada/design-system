@@ -1,0 +1,19 @@
+{
+  "name": "@bernardoestrada/create-webapp",
+  "version": "0.1.0",
+  "description": "Scaffold a new frontend app from the @bernardoestrada/design-system template",
+  "license": "MIT",
+  "bin": {
+    "create-webapp": "./bin/create-webapp.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "dependencies": {
+    "degit": "^2.8.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
