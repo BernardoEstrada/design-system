@@ -1,0 +1,135 @@
+/* ─── Neo Brutalism Light ──────────────────────────────────────────────────── */
+
+[data-theme="neobrutalism"] {
+  color-scheme: light;
+  --color-base-100: #fff8f0;
+  --color-base-200: #fde8d0;
+  --color-base-300: #f9d4b0;
+  --color-base-content: #111111;
+  --color-primary: #facc15;
+  --color-primary-content: #111111;
+  --color-secondary: #f472b6;
+  --color-secondary-content: #111111;
+  --color-accent: #60a5fa;
+  --color-accent-content: #111111;
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #fff8f0;
+  --color-info: oklch(60% 0.16 222);
+  --color-info-content: #111111;
+  --color-success: oklch(64% 0.18 152);
+  --color-success-content: #111111;
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: #111111;
+  --color-error: oklch(64% 0.24 24);
+  --color-error-content: #fff8f0;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --border: 3px;
+  --depth: 0;
+  --noise: 0;
+  --brutal-shadow-color: #111111;
+  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+}
+
+/* ─── Neo Brutalism Dark ───────────────────────────────────────────────────── */
+
+[data-theme="neobrutalism-dark"] {
+  color-scheme: dark;
+  --color-base-100: #111111;
+  --color-base-200: #1a1a1a;
+  --color-base-300: #222222;
+  --color-base-content: #f5f0e8;
+  --color-primary: #facc15;
+  --color-primary-content: #111111;
+  --color-secondary: #f472b6;
+  --color-secondary-content: #111111;
+  --color-accent: #34d399;
+  --color-accent-content: #111111;
+  --color-neutral: #2a2a2a;
+  --color-neutral-content: #f5f0e8;
+  --color-info: oklch(60% 0.16 222);
+  --color-info-content: #111111;
+  --color-success: oklch(64% 0.18 152);
+  --color-success-content: #111111;
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: #111111;
+  --color-error: oklch(64% 0.24 24);
+  --color-error-content: #f5f0e8;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --border: 3px;
+  --depth: 0;
+  --noise: 0;
+  --brutal-shadow-color: #facc15;
+  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+}
+
+/* ─── Neo Brutalism Yellow ─────────────────────────────────────────────────── */
+
+[data-theme="neobrutalism-yellow"] {
+  color-scheme: light;
+  --color-base-100: #facc15;
+  --color-base-200: #f5c000;
+  --color-base-300: #ebb800;
+  --color-base-content: #111111;
+  --color-primary: #f472b6;
+  --color-primary-content: #111111;
+  --color-secondary: #111111;
+  --color-secondary-content: #facc15;
+  --color-accent: #fff8f0;
+  --color-accent-content: #111111;
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #facc15;
+  --color-info: oklch(60% 0.16 222);
+  --color-info-content: #111111;
+  --color-success: oklch(64% 0.18 152);
+  --color-success-content: #111111;
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: #111111;
+  --color-error: oklch(64% 0.24 24);
+  --color-error-content: #facc15;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --border: 3px;
+  --depth: 0;
+  --noise: 0;
+  --brutal-shadow-color: #111111;
+  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+}
+
+/* ─── Neo Brutalism Yellow Dark ────────────────────────────────────────────── */
+
+[data-theme="neobrutalism-yellow-dark"] {
+  color-scheme: dark;
+  --color-base-100: #1c1a00;
+  --color-base-200: #2a2600;
+  --color-base-300: #383200;
+  --color-base-content: #fef3c7;
+  --color-primary: #facc15;
+  --color-primary-content: #111111;
+  --color-secondary: #f472b6;
+  --color-secondary-content: #111111;
+  --color-accent: #34d399;
+  --color-accent-content: #111111;
+  --color-neutral: #2a2600;
+  --color-neutral-content: #fef3c7;
+  --color-info: oklch(60% 0.16 222);
+  --color-info-content: #111111;
+  --color-success: oklch(64% 0.18 152);
+  --color-success-content: #111111;
+  --color-warning: oklch(72% 0.18 82);
+  --color-warning-content: #111111;
+  --color-error: oklch(64% 0.24 24);
+  --color-error-content: #fef3c7;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --border: 3px;
+  --depth: 0;
+  --noise: 0;
+  --brutal-shadow-color: #facc15;
+  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+}
