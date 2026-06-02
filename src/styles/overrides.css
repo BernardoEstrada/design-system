@@ -85,6 +85,10 @@ html[data-theme] .badge-warning   { background: var(--badge-warning-bg) !importa
 html[data-theme] .badge-secondary { background: var(--badge-secondary-bg) !important; color: var(--badge-secondary-color) !important; border-color: transparent !important; }
 
 /* ─── Neo Brutalism — shared across all four themes ─────────────────────── */
+/* !important is used only where the global html[data-theme] rule above also
+   uses !important. For other properties, higher specificity (^= vs exact) is
+   sufficient. The btn:hover box-shadow wins via document order (this block is
+   last), not just specificity, because DaisyUI's hover shadow is also !important. */
 
 html[data-theme^="neobrutalism"] .btn {
   box-shadow: var(--brutal-shadow) !important;
@@ -98,28 +102,28 @@ html[data-theme^="neobrutalism"] .btn-primary {
   background: var(--color-primary) !important;
   border: 3px solid var(--brutal-shadow-color) !important;
   color: var(--color-primary-content) !important;
-  filter: none !important;
+  filter: none;
 }
 html[data-theme^="neobrutalism"] .btn-primary:hover {
-  filter: brightness(0.92) !important;
+  filter: brightness(0.92);
 }
 
 html[data-theme^="neobrutalism"] .btn-outline {
-  border-color: var(--brutal-shadow-color) !important;
-  color: var(--color-base-content) !important;
+  border-color: var(--brutal-shadow-color);
+  color: var(--color-base-content);
 }
 html[data-theme^="neobrutalism"] .btn-outline:hover {
   background: var(--color-base-200) !important;
-  border-color: var(--brutal-shadow-color) !important;
-  color: var(--color-base-content) !important;
+  border-color: var(--brutal-shadow-color);
+  color: var(--color-base-content);
 }
 
 html[data-theme^="neobrutalism"] .btn-ghost {
-  color: var(--color-base-content) !important;
+  color: var(--color-base-content);
 }
 html[data-theme^="neobrutalism"] .btn-ghost:hover {
   background: var(--color-base-200) !important;
-  color: var(--color-base-content) !important;
+  color: var(--color-base-content);
 }
 
 html[data-theme^="neobrutalism"] .input,
@@ -155,7 +159,7 @@ html[data-theme^="neobrutalism"] .badge-secondary {
 
 html[data-theme^="neobrutalism"] .modal-box {
   background: var(--color-base-100) !important;
-  backdrop-filter: none !important;
-  border: 3px solid var(--brutal-shadow-color) !important;
+  backdrop-filter: none;
+  border: 3px solid var(--brutal-shadow-color);
   box-shadow: var(--brutal-shadow) !important;
 }
