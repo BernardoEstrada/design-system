@@ -1,8 +1,8 @@
 /* ─── Glass surface — all themes via CSS vars ────────────────────────────── */
 
-html[data-theme="navigator"] .bg-base-100,
+html[data-theme="navigator-dark"] .bg-base-100,
 html[data-theme="navigator-light"] .bg-base-100,
-html[data-theme="command"] .bg-base-100,
+html[data-theme="command-dark"] .bg-base-100,
 html[data-theme="command-light"] .bg-base-100 {
   background: var(--glass-bg) !important;
   backdrop-filter: var(--glass-filter);
@@ -11,7 +11,7 @@ html[data-theme="command-light"] .bg-base-100 {
 }
 
 /* Navigator: additional hover glow */
-html[data-theme="navigator"] .bg-base-100:hover,
+html[data-theme="navigator-dark"] .bg-base-100:hover,
 html[data-theme="navigator-light"] .bg-base-100:hover {
   border-color: var(--glass-hover-border);
   box-shadow: var(--glass-hover-shadow) !important;
@@ -77,87 +77,80 @@ html[data-theme] .select:focus {
   outline: none;
 }
 
-/* ─── Badges — all themes via CSS vars ──────────────────────────────────── */
-
-html[data-theme] .badge-success   { background: var(--badge-success-bg) !important;   color: var(--badge-success-color) !important;   border-color: transparent !important; }
-html[data-theme] .badge-error     { background: var(--badge-error-bg) !important;     color: var(--badge-error-color) !important;     border-color: transparent !important; }
-html[data-theme] .badge-warning   { background: var(--badge-warning-bg) !important;   color: var(--badge-warning-color) !important;   border-color: transparent !important; }
-html[data-theme] .badge-secondary { background: var(--badge-secondary-bg) !important; color: var(--badge-secondary-color) !important; border-color: transparent !important; }
-
 /* ─── Neo Brutalism — shared across all four themes ─────────────────────── */
 /* !important is used only where the global html[data-theme] rule above also
    uses !important. For other properties, higher specificity (^= vs exact) is
    sufficient. The btn:hover box-shadow wins via document order (this block is
    last), not just specificity, because DaisyUI's hover shadow is also !important. */
 
-html[data-theme^="neobrutalism"] .btn {
+html[data-theme^="neobrutalism-dark"] .btn {
   box-shadow: var(--brutal-shadow) !important;
 }
-html[data-theme^="neobrutalism"] .btn:hover {
+html[data-theme^="neobrutalism-dark"] .btn:hover {
   translate: 1px 1px;
   box-shadow: 3px 3px 0 var(--brutal-shadow-color) !important;
 }
 
-html[data-theme^="neobrutalism"] .btn-primary {
+html[data-theme^="neobrutalism-dark"] .btn-primary {
   background: var(--color-primary) !important;
   border: 3px solid var(--brutal-shadow-color) !important;
   color: var(--color-primary-content) !important;
   filter: none;
 }
-html[data-theme^="neobrutalism"] .btn-primary:hover {
+html[data-theme^="neobrutalism-dark"] .btn-primary:hover {
   filter: brightness(0.92);
 }
 
-html[data-theme^="neobrutalism"] .btn-outline {
+html[data-theme^="neobrutalism-dark"] .btn-outline {
   border-color: var(--brutal-shadow-color);
   color: var(--color-base-content);
 }
-html[data-theme^="neobrutalism"] .btn-outline:hover {
+html[data-theme^="neobrutalism-dark"] .btn-outline:hover {
   background: var(--color-base-200) !important;
   border-color: var(--brutal-shadow-color);
   color: var(--color-base-content);
 }
 
-html[data-theme^="neobrutalism"] .btn-ghost {
+html[data-theme^="neobrutalism-dark"] .btn-ghost {
   color: var(--color-base-content);
 }
-html[data-theme^="neobrutalism"] .btn-ghost:hover {
+html[data-theme^="neobrutalism-dark"] .btn-ghost:hover {
   background: var(--color-base-200) !important;
   color: var(--color-base-content);
 }
 
-html[data-theme^="neobrutalism"] .input,
-html[data-theme^="neobrutalism"] .select,
-html[data-theme^="neobrutalism"] .textarea {
+html[data-theme^="neobrutalism-dark"] .input,
+html[data-theme^="neobrutalism-dark"] .select,
+html[data-theme^="neobrutalism-dark"] .textarea {
   background: var(--color-base-100) !important;
   border-color: var(--brutal-shadow-color) !important;
   box-shadow: var(--brutal-shadow) !important;
 }
-html[data-theme^="neobrutalism"] .input:focus,
-html[data-theme^="neobrutalism"] .select:focus,
-html[data-theme^="neobrutalism"] .textarea:focus {
+html[data-theme^="neobrutalism-dark"] .input:focus,
+html[data-theme^="neobrutalism-dark"] .select:focus,
+html[data-theme^="neobrutalism-dark"] .textarea:focus {
   border-color: var(--brutal-shadow-color) !important;
   box-shadow: var(--brutal-shadow) !important;
   outline: none;
 }
 
-html[data-theme^="neobrutalism"] .card {
+html[data-theme^="neobrutalism-dark"] .card {
   box-shadow: var(--brutal-shadow) !important;
   border: 3px solid var(--brutal-shadow-color) !important;
 }
 
-html[data-theme^="neobrutalism"] .badge {
+html[data-theme^="neobrutalism-dark"] .badge {
   border-color: var(--brutal-shadow-color) !important;
   box-shadow: 2px 2px 0 var(--brutal-shadow-color) !important;
 }
-html[data-theme^="neobrutalism"] .badge-success,
-html[data-theme^="neobrutalism"] .badge-error,
-html[data-theme^="neobrutalism"] .badge-warning,
-html[data-theme^="neobrutalism"] .badge-secondary {
+html[data-theme^="neobrutalism-dark"] .badge-success,
+html[data-theme^="neobrutalism-dark"] .badge-error,
+html[data-theme^="neobrutalism-dark"] .badge-warning,
+html[data-theme^="neobrutalism-dark"] .badge-secondary {
   border-color: var(--brutal-shadow-color) !important;
 }
 
-html[data-theme^="neobrutalism"] .modal-box {
+html[data-theme^="neobrutalism-dark"] .modal-box {
   background: var(--color-base-100) !important;
   backdrop-filter: none;
   border: 3px solid var(--brutal-shadow-color);

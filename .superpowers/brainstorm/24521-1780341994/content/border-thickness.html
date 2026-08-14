@@ -1,0 +1,60 @@
+<h2>Border thickness?</h2>
+<p class="subtitle">Neo brutalism lives and dies by its borders. Thicker feels more aggressive; thinner stays readable at small sizes.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:8px;">
+
+  <div class="card" data-choice="2px" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fffbf0;padding:16px;font-family:sans-serif;">
+      <div style="background:#fffbf0;border:2px solid #111;padding:10px;box-shadow:4px 4px 0 #111;margin-bottom:10px;">
+        <div style="font-weight:800;font-size:13px;">Card title</div>
+        <div style="font-size:11px;color:#555;">Some content inside</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="background:#facc15;border:2px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Button</div>
+        <div style="background:#fffbf0;border:2px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Outline</div>
+      </div>
+      <input style="border:2px solid #111;padding:6px 8px;box-shadow:4px 4px 0 #111;font-size:12px;background:#fffbf0;outline:none;width:100%;box-sizing:border-box;" value="Input field" readonly>
+    </div>
+    <div class="card-body">
+      <h3>A — 2px border</h3>
+      <p>Sharp but not heavy. Works well at small component sizes.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="3px" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fffbf0;padding:16px;font-family:sans-serif;">
+      <div style="background:#fffbf0;border:3px solid #111;padding:10px;box-shadow:4px 4px 0 #111;margin-bottom:10px;">
+        <div style="font-weight:800;font-size:13px;">Card title</div>
+        <div style="font-size:11px;color:#555;">Some content inside</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="background:#facc15;border:3px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Button</div>
+        <div style="background:#fffbf0;border:3px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Outline</div>
+      </div>
+      <input style="border:3px solid #111;padding:6px 8px;box-shadow:4px 4px 0 #111;font-size:12px;background:#fffbf0;outline:none;width:100%;box-sizing:border-box;" value="Input field" readonly>
+    </div>
+    <div class="card-body">
+      <h3>B — 3px border ★</h3>
+      <p>The sweet spot. Unmistakably brutalist without crushing small elements.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="4px" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fffbf0;padding:16px;font-family:sans-serif;">
+      <div style="background:#fffbf0;border:4px solid #111;padding:10px;box-shadow:4px 4px 0 #111;margin-bottom:10px;">
+        <div style="font-weight:800;font-size:13px;">Card title</div>
+        <div style="font-size:11px;color:#555;">Some content inside</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="background:#facc15;border:4px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Button</div>
+        <div style="background:#fffbf0;border:4px solid #111;padding:5px 12px;font-weight:700;box-shadow:4px 4px 0 #111;font-size:12px;">Outline</div>
+      </div>
+      <input style="border:4px solid #111;padding:6px 8px;box-shadow:4px 4px 0 #111;font-size:12px;background:#fffbf0;outline:none;width:100%;box-sizing:border-box;" value="Input field" readonly>
+    </div>
+    <div class="card-body">
+      <h3>C — 4px border</h3>
+      <p>Maximum aggression. Very loud — best for marketing / portfolio use.</p>
+    </div>
+  </div>
+
+</div>

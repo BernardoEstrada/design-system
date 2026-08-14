@@ -1,35 +1,41 @@
 import React from "react";
 import type { Preview, Decorator } from "@storybook/react";
 import "../src/index.css";
-import { Themes, applyTheme } from "../src/themes/index";
-
-const allThemes = Object.values(Themes).filter(
-  (t) => t !== Themes.LIGHT && t !== Themes.DARK
-);
+import {
+  Appearance,
+  DEFAULT_THEME,
+  DEFAULT_THEME_CATEGORY,
+  applyTheme,
+} from "../src/themes/index";
 
 const withTheme: Decorator = (Story, context) => {
-  const theme = context.globals.theme || Themes.NAVIGATOR;
+  const theme = context.globals.theme || DEFAULT_THEME;
+  const appearance = context.globals.appearance || Appearance.SYSTEM;
+
   React.useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    applyTheme(theme, appearance);
+  }, [theme, appearance]);
+
   return <Story />;
 };
 
 const preview: Preview = {
   decorators: [withTheme],
   globalTypes: {
+    themeGroup: {
+      description: "Theme group",
+    },
     theme: {
       description: "DaisyUI theme",
-      toolbar: {
-        title: "Theme",
-        icon: "paintbrush",
-        items: allThemes.map((t) => ({ value: t, title: t })),
-        dynamicTitle: true,
-      },
+    },
+    appearance: {
+      description: "Appearance",
     },
   },
   initialGlobals: {
-    theme: Themes.NAVIGATOR,
+    themeGroup: DEFAULT_THEME_CATEGORY,
+    theme: DEFAULT_THEME,
+    appearance: Appearance.SYSTEM,
   },
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },

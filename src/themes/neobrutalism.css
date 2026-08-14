@@ -1,6 +1,6 @@
 /* ─── Neo Brutalism Light ──────────────────────────────────────────────────── */
 
-[data-theme="neobrutalism"] {
+[data-theme="neobrutalism-light"] {
   color-scheme: light;
   --color-base-100: #fff8f0;
   --color-base-200: #fde8d0;
@@ -68,7 +68,7 @@
 
 /* ─── Neo Brutalism Yellow ─────────────────────────────────────────────────── */
 
-[data-theme="neobrutalism-yellow"] {
+[data-theme="neobrutalism-yellow-light"] {
   color-scheme: light;
   --color-base-100: #facc15;
   --color-base-200: #f5c000;

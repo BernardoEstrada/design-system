@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: false;
+  themes: all;
   logs: false;
 }
+
+@source inline("bg-{error,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose,slate,gray,zinc,neutral,stone}-{50,{100..900..100},950}");
+@source inline("badge-{primary,secondary,accent,success,error,warning,info,neutral,ghost,outline,xs,sm,md,lg,xl}");
+@source inline("btn-{primary,secondary,accent,success,error,warning,info,neutral,ghost,outline,xs,sm,md,lg,xl}");
 
 /* App themes */
 @import "./themes/navigator.css";

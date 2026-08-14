@@ -1,6 +1,6 @@
 /* ─── Command Dark ───────────────────────────────────────────────────────── */
 
-[data-theme="command"] {
+[data-theme="command-dark"] {
   color-scheme: dark;
   --color-base-100: oklch(13.5% 0.005 270);
   --color-base-200: oklch(9.5% 0.004 270);
@@ -70,36 +70,36 @@
   --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 55%), 0 4px 24px oklch(0% 0 0 / 40%);
 }
 
-html[data-theme="command"] {
+html[data-theme="command-dark"] {
   font-family: 'DM Sans', sans-serif;
   background: oklch(9% 0.004 270);
   min-height: 100vh;
 }
 
-html[data-theme="command"] body,
-html[data-theme="command"] .bg-base-200 {
+html[data-theme="command-dark"] body,
+html[data-theme="command-dark"] .bg-base-200 {
   background: transparent;
 }
 
-html[data-theme="command"] .sticky.bg-base-100 {
+html[data-theme="command-dark"] .sticky.bg-base-100 {
   background: oklch(9% 0.004 270) !important;
   border-color: oklch(100% 0 0 / 5%) !important;
   box-shadow: none !important;
   backdrop-filter: none;
 }
 
-html[data-theme="command"] .bg-base-100.rounded-xl {
+html[data-theme="command-dark"] .bg-base-100.rounded-xl {
   border-radius: 7px !important;
   border-color: oklch(100% 0 0 / 5%) !important;
   transition: background 0.1s, border-color 0.1s;
 }
-html[data-theme="command"] .bg-base-100.rounded-xl:hover {
+html[data-theme="command-dark"] .bg-base-100.rounded-xl:hover {
   background: oklch(17% 0.006 270) !important;
   border-color: oklch(100% 0 0 / 9%) !important;
 }
 
-html[data-theme="command"] .font-mono { font-family: 'IBM Plex Mono', monospace; }
-html[data-theme="command"] .font-black.text-primary { letter-spacing: -0.03em; }
+html[data-theme="command-dark"] .font-mono { font-family: 'IBM Plex Mono', monospace; }
+html[data-theme="command-dark"] .font-black.text-primary { letter-spacing: -0.03em; }
 
 /* ─── Command Light ──────────────────────────────────────────────────────── */
 

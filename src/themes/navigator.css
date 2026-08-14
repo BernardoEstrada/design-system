@@ -1,6 +1,6 @@
 /* ─── Navigator Dark ─────────────────────────────────────────────────────── */
 
-[data-theme="navigator"] {
+[data-theme="navigator-dark"] {
   color-scheme: dark;
   --color-base-100: oklch(16% 0.028 275);
   --color-base-200: oklch(11% 0.022 275);
@@ -75,32 +75,32 @@
   --modal-shadow: 0 0 0 100vmax oklch(0% 0 0 / 48%), 0 8px 40px oklch(0% 0 0 / 50%);
 }
 
-html[data-theme="navigator"] {
+html[data-theme="navigator-dark"] {
   font-family: 'Outfit', sans-serif;
   background: linear-gradient(145deg, oklch(10% 0.035 295) 0%, oklch(11% 0.028 265) 50%, oklch(9% 0.022 235) 100%);
   min-height: 100vh;
 }
 
-html[data-theme="navigator"] body,
-html[data-theme="navigator"] .bg-base-200 {
+html[data-theme="navigator-dark"] body,
+html[data-theme="navigator-dark"] .bg-base-200 {
   background: transparent;
 }
 
-html[data-theme="navigator"] .font-black.text-primary {
+html[data-theme="navigator-dark"] .font-black.text-primary {
   background: linear-gradient(90deg, #c084fc 0%, #818cf8 55%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-html[data-theme="navigator"] h1 {
+html[data-theme="navigator-dark"] h1 {
   background: linear-gradient(90deg, oklch(94% 0.008 268) 0%, oklch(78% 0.16 295) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-html[data-theme="navigator"] .bg-base-200 {
+html[data-theme="navigator-dark"] .bg-base-200 {
   background: oklch(14% 0.025 275 / 55%) !important;
   backdrop-filter: blur(10px);
   border: 1px solid oklch(100% 0 0 / 7%);
