@@ -1,7 +1,49 @@
+/* ─── Neo Brutalism — shared across all four themes ───────────────────────── */
+
+[data-theme="neobrutalism-light"],
+[data-theme="neobrutalism-dark"],
+[data-theme="neobrutalism-yellow-light"],
+[data-theme="neobrutalism-yellow-dark"] {
+  --color-info: oklch(60% 0.16 222);
+  --color-success: oklch(64% 0.18 152);
+  --color-warning: oklch(72% 0.18 82);
+  --color-error: oklch(64% 0.24 24);
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --border: 3px;
+  --shadow: 4px;
+  --brutal-shadow: var(--shadow) var(--shadow) 0 var(--brutal-shadow-color);
+  --depth: 0;
+  --borders-on-light: 1;
+  --borders-on-dark: 0;
+  --button-hover-distance: 1/4;
+  --button-press-distance: 4/4;
+}
+
+/* Light family: dark text on state colors; error text mirrors the page base */
+[data-theme="neobrutalism-light"],
+[data-theme="neobrutalism-yellow-light"] {
+  color-scheme: light;
+  --color-info-content: #111111;
+  --color-success-content: #111111;
+  --color-warning-content: #111111;
+  --color-error-content: var(--color-base-100);
+}
+
+/* Dark family: state text mirrors base-content */
+[data-theme="neobrutalism-dark"],
+[data-theme="neobrutalism-yellow-dark"] {
+  color-scheme: dark;
+  --color-info-content: var(--color-base-content);
+  --color-success-content: var(--color-base-content);
+  --color-warning-content: var(--color-base-content);
+  --color-error-content: var(--color-base-content);
+}
+
 /* ─── Neo Brutalism Light ──────────────────────────────────────────────────── */
 
 [data-theme="neobrutalism-light"] {
-  color-scheme: light;
   --color-base-100: #fff8f0;
   --color-base-200: #fde8d0;
   --color-base-300: #f9d4b0;
@@ -14,28 +56,12 @@
   --color-accent-content: #111111;
   --color-neutral: #1a1a1a;
   --color-neutral-content: #fff8f0;
-  --color-info: oklch(60% 0.16 222);
-  --color-info-content: #111111;
-  --color-success: oklch(64% 0.18 152);
-  --color-success-content: #111111;
-  --color-warning: oklch(72% 0.18 82);
-  --color-warning-content: #111111;
-  --color-error: oklch(64% 0.24 24);
-  --color-error-content: #fff8f0;
-  --radius-selector: 2rem;
-  --radius-field: 2rem;
-  --radius-box: 1rem;
-  --border: 3px;
-  --depth: 0;
-  --noise: 0;
   --brutal-shadow-color: #111111;
-  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
 }
 
 /* ─── Neo Brutalism Dark ───────────────────────────────────────────────────── */
 
 [data-theme="neobrutalism-dark"] {
-  color-scheme: dark;
   --color-base-100: #111111;
   --color-base-200: #1a1a1a;
   --color-base-300: #222222;
@@ -48,28 +74,12 @@
   --color-accent-content: #111111;
   --color-neutral: #2a2a2a;
   --color-neutral-content: #f5f0e8;
-  --color-info: oklch(60% 0.16 222);
-  --color-info-content: #f5f0e8;
-  --color-success: oklch(64% 0.18 152);
-  --color-success-content: #f5f0e8;
-  --color-warning: oklch(72% 0.18 82);
-  --color-warning-content: #f5f0e8;
-  --color-error: oklch(64% 0.24 24);
-  --color-error-content: #f5f0e8;
-  --radius-selector: 2rem;
-  --radius-field: 2rem;
-  --radius-box: 1rem;
-  --border: 3px;
-  --depth: 0;
-  --noise: 0;
-  --brutal-shadow-color: #facc15;
-  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+  --brutal-shadow-color: #fff8f0;
 }
 
 /* ─── Neo Brutalism Yellow ─────────────────────────────────────────────────── */
 
 [data-theme="neobrutalism-yellow-light"] {
-  color-scheme: light;
   --color-base-100: #facc15;
   --color-base-200: #f5c000;
   --color-base-300: #ebb800;
@@ -82,28 +92,12 @@
   --color-accent-content: #111111;
   --color-neutral: #1a1a1a;
   --color-neutral-content: #facc15;
-  --color-info: oklch(60% 0.16 222);
-  --color-info-content: #111111;
-  --color-success: oklch(64% 0.18 152);
-  --color-success-content: #111111;
-  --color-warning: oklch(72% 0.18 82);
-  --color-warning-content: #111111;
-  --color-error: oklch(64% 0.24 24);
-  --color-error-content: #facc15;
-  --radius-selector: 2rem;
-  --radius-field: 2rem;
-  --radius-box: 1rem;
-  --border: 3px;
-  --depth: 0;
-  --noise: 0;
   --brutal-shadow-color: #111111;
-  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
 }
 
 /* ─── Neo Brutalism Yellow Dark ────────────────────────────────────────────── */
 
 [data-theme="neobrutalism-yellow-dark"] {
-  color-scheme: dark;
   --color-base-100: #1c1a00;
   --color-base-200: #2a2600;
   --color-base-300: #383200;
@@ -116,20 +110,101 @@
   --color-accent-content: #111111;
   --color-neutral: #3a3200;
   --color-neutral-content: #fef3c7;
-  --color-info: oklch(60% 0.16 222);
-  --color-info-content: #fef3c7;
-  --color-success: oklch(64% 0.18 152);
-  --color-success-content: #fef3c7;
-  --color-warning: oklch(72% 0.18 82);
-  --color-warning-content: #fef3c7;
-  --color-error: oklch(64% 0.24 24);
-  --color-error-content: #fef3c7;
-  --radius-selector: 2rem;
-  --radius-field: 2rem;
-  --radius-box: 1rem;
-  --border: 3px;
-  --depth: 0;
-  --noise: 0;
   --brutal-shadow-color: #facc15;
-  --brutal-shadow: 4px 4px 0 var(--brutal-shadow-color);
+}
+
+/* ─── Neo Brutalism component overrides — shared across all four themes ────── */
+/* !important overrides DaisyUI's own component declarations. The btn:hover
+   box-shadow wins via specificity plus document order, since DaisyUI's hover
+   shadow is also !important. */
+
+html[data-theme^="neobrutalism"] .btn {
+  box-shadow: var(--brutal-shadow) !important;
+  border: var(--border) solid var(--brutal-shadow-color) !important;
+  transition: all 0.1s ease-in-out;
+}
+
+html[data-theme^="neobrutalism"][data-theme$="-dark"] .btn {
+  border: calc(var(--borders-on-dark) * var(--border)) solid var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"]:not([data-theme$="-dark"]) .btn {
+  border: calc(var(--borders-on-light) * var(--border)) solid var(--brutal-shadow-color) !important;
+}
+
+
+html[data-theme^="neobrutalism"] .btn:hover {
+  translate: calc(var(--button-hover-distance) * var(--shadow)) calc(var(--button-hover-distance) * var(--shadow));
+  box-shadow: calc(calc(1 - var(--button-hover-distance)) * var(--shadow)) calc(calc(1 - var(--button-hover-distance)) * var(--shadow)) 0 var(--brutal-shadow-color) !important;
+  filter: brightness(0.98);
+  transition: all 0.1s ease-in-out;
+}
+
+html[data-theme^="neobrutalism"] .btn:active {
+  translate: calc(var(--button-press-distance) * var(--shadow)) calc(var(--button-press-distance) * var(--shadow));
+  box-shadow: calc(calc(1 - var(--button-press-distance)) * var(--shadow)) calc(calc(1 - var(--button-press-distance)) * var(--shadow)) 0 var(--brutal-shadow-color) !important;
+  filter: brightness(0.90);
+  transition: all 0.1s ease-in-out;
+}
+
+html[data-theme^="neobrutalism"] .btn-primary {
+  background: var(--color-primary) !important;
+  color: var(--color-primary-content) !important;
+  filter: none;
+}
+
+html[data-theme^="neobrutalism"] .btn-outline {
+  border-color: var(--brutal-shadow-color);
+  color: var(--color-base-content);
+}
+html[data-theme^="neobrutalism"] .btn-outline:hover {
+  background: var(--color-base-200) !important;
+  border-color: var(--brutal-shadow-color);
+  color: var(--color-base-content);
+}
+
+html[data-theme^="neobrutalism"] .btn-ghost {
+  color: var(--color-base-content);
+}
+html[data-theme^="neobrutalism"] .btn-ghost:hover {
+  background: var(--color-base-200) !important;
+  color: var(--color-base-content);
+}
+
+html[data-theme^="neobrutalism"] .input,
+html[data-theme^="neobrutalism"] .select,
+html[data-theme^="neobrutalism"] .textarea {
+  background: var(--color-base-100) !important;
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
+}
+html[data-theme^="neobrutalism"] .input:focus,
+html[data-theme^="neobrutalism"] .select:focus,
+html[data-theme^="neobrutalism"] .textarea:focus {
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
+  outline: none;
+}
+
+html[data-theme^="neobrutalism"] .card {
+  box-shadow: var(--brutal-shadow) !important;
+  border: var(--border) solid var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"] .badge {
+  border-color: var(--brutal-shadow-color) !important;
+  box-shadow: 2px 2px 0 var(--brutal-shadow-color) !important;
+}
+html[data-theme^="neobrutalism"] .badge-success,
+html[data-theme^="neobrutalism"] .badge-error,
+html[data-theme^="neobrutalism"] .badge-warning,
+html[data-theme^="neobrutalism"] .badge-secondary {
+  border-color: var(--brutal-shadow-color) !important;
+}
+
+html[data-theme^="neobrutalism"] .modal-box {
+  background: var(--color-base-100) !important;
+  backdrop-filter: none;
+  border: var(--border) solid var(--brutal-shadow-color) !important;
+  box-shadow: var(--brutal-shadow) !important;
 }

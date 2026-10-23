@@ -21,10 +21,4 @@
   --color-warning-content: oklch(15% 0.01 0);
   --color-error: #800000;
   --color-error-content: oklch(92% 0.01 0);
-  --radius-selector: 0.3rem;
-  --radius-field: 0.3rem;
-  --radius-box: 0.5rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
 }

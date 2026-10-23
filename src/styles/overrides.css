@@ -17,142 +17,63 @@ html[data-theme="navigator-light"] .bg-base-100:hover {
   box-shadow: var(--glass-hover-shadow) !important;
 }
 
-/* ─── Modal glass — all themes via CSS vars ──────────────────────────────── */
+/* ─── App theme components (navigator, command) ──────────────────────────── */
+/* Scoped to the app themes because only they define the --btn-*, --field-*
+   and --modal-* vars. Other theme families style their own components
+   (see neobrutalism.css). */
 
-html[data-theme] .modal-backdrop {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .modal-backdrop {
   /* Transparent so modal-box backdrop-filter blurs real page content.
-     Darkening comes from modal-box box-shadow spread instead. */
+     Darkening comes from the modal-box box-shadow spread instead. */
   background: transparent !important;
 }
 
-html[data-theme] .modal-box {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .modal-box {
   background: var(--modal-bg) !important;
   backdrop-filter: var(--modal-blur);
   border: 1px solid var(--modal-border);
   box-shadow: var(--modal-shadow) !important;
 }
 
-/* ─── Buttons — all themes via CSS vars ──────────────────────────────────── */
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn {
+  box-shadow: none;
+}
 
-html[data-theme] .btn { box-shadow: none; }
-
-html[data-theme] .btn-primary {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-primary {
   background: var(--btn-primary-bg) !important;
   border: 0 !important;
   filter: var(--btn-primary-filter, none);
 }
-html[data-theme] .btn-primary:hover {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-primary:hover {
   background: var(--btn-primary-bg-hover, var(--btn-primary-bg)) !important;
   filter: var(--btn-primary-filter-hover, none);
 }
 
-html[data-theme] .btn-outline {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-outline {
   border-color: var(--btn-outline-border);
   color: var(--btn-outline-color);
 }
-html[data-theme] .btn-outline:hover {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-outline:hover {
   background: var(--btn-outline-bg-hover) !important;
   border-color: var(--btn-outline-border-hover);
   color: var(--btn-outline-color-hover);
 }
 
-html[data-theme] .btn-ghost { color: var(--btn-ghost-color); }
-html[data-theme] .btn-ghost:hover {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-ghost {
+  color: var(--btn-ghost-color);
+}
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .btn-ghost:hover {
   background: var(--btn-ghost-bg-hover) !important;
   color: var(--btn-ghost-color-hover);
 }
 
-/* ─── Fields — all themes via CSS vars ──────────────────────────────────── */
-
-html[data-theme] .input,
-html[data-theme] .select {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) :is(.input, .select, .textarea) {
   background: var(--field-bg) !important;
   border-color: var(--field-border) !important;
   backdrop-filter: var(--field-blur, none);
 }
-html[data-theme] .input:focus,
-html[data-theme] .select:focus {
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) :is(.input, .select, .textarea):focus {
   border-color: var(--field-focus-border) !important;
   box-shadow: var(--field-focus-shadow) !important;
   outline: none;
-}
-
-/* ─── Neo Brutalism — shared across all four themes ─────────────────────── */
-/* !important is used only where the global html[data-theme] rule above also
-   uses !important. For other properties, higher specificity (^= vs exact) is
-   sufficient. The btn:hover box-shadow wins via document order (this block is
-   last), not just specificity, because DaisyUI's hover shadow is also !important. */
-
-html[data-theme^="neobrutalism-dark"] .btn {
-  box-shadow: var(--brutal-shadow) !important;
-}
-html[data-theme^="neobrutalism-dark"] .btn:hover {
-  translate: 1px 1px;
-  box-shadow: 3px 3px 0 var(--brutal-shadow-color) !important;
-}
-
-html[data-theme^="neobrutalism-dark"] .btn-primary {
-  background: var(--color-primary) !important;
-  border: 3px solid var(--brutal-shadow-color) !important;
-  color: var(--color-primary-content) !important;
-  filter: none;
-}
-html[data-theme^="neobrutalism-dark"] .btn-primary:hover {
-  filter: brightness(0.92);
-}
-
-html[data-theme^="neobrutalism-dark"] .btn-outline {
-  border-color: var(--brutal-shadow-color);
-  color: var(--color-base-content);
-}
-html[data-theme^="neobrutalism-dark"] .btn-outline:hover {
-  background: var(--color-base-200) !important;
-  border-color: var(--brutal-shadow-color);
-  color: var(--color-base-content);
-}
-
-html[data-theme^="neobrutalism-dark"] .btn-ghost {
-  color: var(--color-base-content);
-}
-html[data-theme^="neobrutalism-dark"] .btn-ghost:hover {
-  background: var(--color-base-200) !important;
-  color: var(--color-base-content);
-}
-
-html[data-theme^="neobrutalism-dark"] .input,
-html[data-theme^="neobrutalism-dark"] .select,
-html[data-theme^="neobrutalism-dark"] .textarea {
-  background: var(--color-base-100) !important;
-  border-color: var(--brutal-shadow-color) !important;
-  box-shadow: var(--brutal-shadow) !important;
-}
-html[data-theme^="neobrutalism-dark"] .input:focus,
-html[data-theme^="neobrutalism-dark"] .select:focus,
-html[data-theme^="neobrutalism-dark"] .textarea:focus {
-  border-color: var(--brutal-shadow-color) !important;
-  box-shadow: var(--brutal-shadow) !important;
-  outline: none;
-}
-
-html[data-theme^="neobrutalism-dark"] .card {
-  box-shadow: var(--brutal-shadow) !important;
-  border: 3px solid var(--brutal-shadow-color) !important;
-}
-
-html[data-theme^="neobrutalism-dark"] .badge {
-  border-color: var(--brutal-shadow-color) !important;
-  box-shadow: 2px 2px 0 var(--brutal-shadow-color) !important;
-}
-html[data-theme^="neobrutalism-dark"] .badge-success,
-html[data-theme^="neobrutalism-dark"] .badge-error,
-html[data-theme^="neobrutalism-dark"] .badge-warning,
-html[data-theme^="neobrutalism-dark"] .badge-secondary {
-  border-color: var(--brutal-shadow-color) !important;
-}
-
-html[data-theme^="neobrutalism-dark"] .modal-box {
-  background: var(--color-base-100) !important;
-  backdrop-filter: none;
-  border: 3px solid var(--brutal-shadow-color);
-  box-shadow: var(--brutal-shadow) !important;
 }

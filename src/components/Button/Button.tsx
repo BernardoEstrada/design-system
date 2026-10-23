@@ -10,6 +10,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   wide?: boolean;
 }
 
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  accent: "btn-accent",
+  ghost: "btn-ghost",
+  outline: "btn-outline",
+  neutral: "",
+};
+
+const sizeClasses: Record<Exclude<ButtonSize, "md">, string> = {
+  xs: "btn-xs",
+  sm: "btn-sm",
+  lg: "btn-lg",
+};
+
 export function Button({
   variant = "primary",
   size = "md",
@@ -20,8 +35,8 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const variantClass = variant !== "neutral" ? `btn-${variant}` : "";
-  const sizeClass = size !== "md" ? `btn-${size}` : "";
+  const variantClass = variantClasses[variant];
+  const sizeClass = size !== "md" ? sizeClasses[size] : "";
   const classes = ["btn", variantClass, sizeClass, wide ? "btn-wide" : "", className]
     .filter(Boolean)
     .join(" ");

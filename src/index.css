@@ -5,15 +5,32 @@
   logs: false;
 }
 
-@source inline("bg-{error,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose,slate,gray,zinc,neutral,stone}-{50,{100..900..100},950}");
-@source inline("badge-{primary,secondary,accent,success,error,warning,info,neutral,ghost,outline,xs,sm,md,lg,xl}");
-@source inline("btn-{primary,secondary,accent,success,error,warning,info,neutral,ghost,outline,xs,sm,md,lg,xl}");
+/* Shared across every theme below — a specific theme file only needs to
+   declare a var here if its value actually differs from this default. */
+[data-theme] {
+  --border: 1px;
+  --noise: 0;
+}
 
 /* App themes */
 @import "./themes/navigator.css";
 @import "./themes/command.css";
 
-/* Editor themes */
+/* Editor themes share the same shape (only their color palette differs) */
+[data-theme="vsdark"],
+[data-theme="monokai"],
+[data-theme="editor-nord"],
+[data-theme="githublight"],
+[data-theme="terminal"],
+[data-theme="crt1990"],
+[data-theme="win95"],
+[data-theme="macclassic"] {
+  --radius-selector: 0.3rem;
+  --radius-field: 0.3rem;
+  --radius-box: 0.5rem;
+  --depth: 1;
+}
+
 @import "./themes/vsdark.css";
 @import "./themes/monokai.css";
 @import "./themes/nord.css";

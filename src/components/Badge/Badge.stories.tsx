@@ -16,8 +16,23 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
-      {(["primary","secondary","accent","success","error","warning","info","neutral","ghost","outline"] as const).map(v => (
-        <Badge key={v} variant={v}>{v}</Badge>
+      {(
+        [
+          "primary",
+          "secondary",
+          "accent",
+          "success",
+          "error",
+          "warning",
+          "info",
+          "neutral",
+          "ghost",
+          "outline",
+        ] as const
+      ).map((v) => (
+        <Badge key={v} variant={v}>
+          {v}
+        </Badge>
       ))}
     </div>
   ),

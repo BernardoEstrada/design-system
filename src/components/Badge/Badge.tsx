@@ -18,6 +18,25 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   size?: BadgeSize;
 }
 
+const variantClasses: Record<BadgeVariant, string> = {
+  primary: "badge-primary",
+  secondary: "badge-secondary",
+  accent: "badge-accent",
+  success: "badge-success",
+  error: "badge-error",
+  warning: "badge-warning",
+  info: "badge-info",
+  neutral: "badge-neutral",
+  ghost: "badge-ghost",
+  outline: "badge-outline",
+};
+
+const sizeClasses: Record<Exclude<BadgeSize, "md">, string> = {
+  xs: "badge-xs",
+  sm: "badge-sm",
+  lg: "badge-lg",
+};
+
 export function Badge({
   variant = "primary",
   size = "md",
@@ -25,8 +44,8 @@ export function Badge({
   children,
   ...props
 }: BadgeProps) {
-  const variantClass = `badge-${variant}`;
-  const sizeClass = size !== "md" ? `badge-${size}` : "";
+  const variantClass = variantClasses[variant];
+  const sizeClass = size !== "md" ? sizeClasses[size] : "";
   const classes = ["badge", variantClass, sizeClass, className]
     .filter(Boolean)
     .join(" ");
