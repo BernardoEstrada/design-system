@@ -1,4 +1,6 @@
-import type { InputHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes } from "react";
+import { cx, idFromLabel } from "../../utils/cx";
+import { Field } from "../Field/Field";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -6,18 +8,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hint?: string;
 }
 
-export function Input({ label, error, hint, className = "", id, ...props }: InputProps) {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, "-");
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, error, hint, className = "", id, ...props },
+  ref,
+) {
+  const inputId = idFromLabel(id, label);
   return (
-    <fieldset className="fieldset">
-      {label && <label className="fieldset-label" htmlFor={inputId}>{label}</label>}
+    <Field label={label} htmlFor={inputId} error={error} hint={hint}>
       <input
+        ref={ref}
         id={inputId}
-        className={["input", error ? "input-error" : "", className].filter(Boolean).join(" ")}
+        className={cx("input", error && "input-error", className)}
+        aria-invalid={error ? true : undefined}
         {...props}
       />
-      {error && <p className="fieldset-label text-error">{error}</p>}
-      {!error && hint && <p className="fieldset-label">{hint}</p>}
-    </fieldset>
+    </Field>
   );
-}
+});
