@@ -19,15 +19,26 @@ jobs:
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com
+          scope: "@bernardoestrada"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Typecheck and lint
+        run: yarn typecheck && yarn lint
+
       - name: Build design system
         run: yarn build
 
+      # The tag (v1.2.3) is the source of truth for both package versions.
+      - name: Set versions from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
+          npm version "$VERSION" --no-git-tag-version --allow-same-version --prefix create-webapp
+
       - name: Publish @bernardoestrada/design-system
-        run: yarn publish --non-interactive --new-version ${GITHUB_REF_NAME#v}
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -98,17 +98,17 @@ Each story should include a theme switcher via the `data-theme` attribute on a w
 ### Consuming the design system in another project
 
 ```bash
-yarn add github:BernardoEstrada/design-system   # or local path
+yarn add @bernardoestrada/design-system   # needs .npmrc pointing @bernardoestrada at npm.pkg.github.com
 ```
 
 Then in the consuming app's CSS:
 ```css
-@import "@berni/design-system/styles";
+@import "@bernardoestrada/design-system/styles";
 ```
 
 And in React:
 ```tsx
-import { Button } from "@berni/design-system";
+import { Button } from "@bernardoestrada/design-system";
 ```
 
 ## Source themes reference
