@@ -10,6 +10,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
+Yarn 4 (`packageManager: yarn@4.18.1`, enable with `corepack enable`), `nodeLinker: node-modules`. The 24-hour release quarantine (`npmMinimalAgeGate` in `.yarnrc.yml`) is on: don't raise a dependency to a version published less than a day ago. `yarn icons:update` already respects it.
+
 ```bash
 # Install
 yarn

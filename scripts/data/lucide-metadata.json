@@ -1,6 +1,6 @@
 {
- "version": "1.63.0",
- "source": "https://github.com/lucide-icons/lucide/tree/1.63.0",
+ "version": "1.62.0",
+ "source": "https://github.com/lucide-icons/lucide/tree/1.62.0",
  "categories": {
   "accessibility": "Accessibility",
   "account": "Accounts & access",
@@ -750,41 +750,18 @@
     "mail"
    ]
   },
-  "archive-arrow-down": {
-   "tags": [
-    "index",
-    "backup",
-    "box",
-    "storage",
-    "records",
-    "email",
-    "download",
-    "save"
-   ],
-   "categories": [
-    "files",
-    "mail"
-   ]
-  },
-  "archive-arrow-up": {
+  "archive-restore": {
    "tags": [
     "unarchive",
     "index",
     "backup",
     "box",
     "storage",
-    "records",
-    "restore",
-    "retrieve",
-    "recover",
-    "reactivate"
+    "records"
    ],
    "categories": [
     "files",
     "mail"
-   ],
-   "aliases": [
-    "archive-restore"
    ]
   },
   "archive-x": {
@@ -4385,33 +4362,6 @@
     "development"
    ]
   },
-  "boxes-linked": {
-   "tags": [
-    "cubes",
-    "package",
-    "module",
-    "dependencies",
-    "link",
-    "chain",
-    "blockchain",
-    "network",
-    "nodes",
-    "supply chain",
-    "integration",
-    "component",
-    "logistics",
-    "distributed",
-    "interconnected",
-    "relationship",
-    "coupling",
-    "system architecture",
-    "distributed systems",
-    "inventory"
-   ],
-   "categories": [
-    "development"
-   ]
-  },
   "braces": {
    "tags": [
     "json",
@@ -5186,61 +5136,6 @@
    ],
    "categories": [
     "time"
-   ]
-  },
-  "calendar-arrow-left": {
-   "tags": [
-    "date",
-    "day",
-    "month",
-    "year",
-    "event",
-    "arrow",
-    "direction",
-    "navigation",
-    "previous",
-    "back",
-    "backward",
-    "past",
-    "earlier",
-    "reschedule",
-    "postpone",
-    "schedule",
-    "timeline",
-    "date picker"
-   ],
-   "categories": [
-    "time",
-    "arrows",
-    "navigation"
-   ]
-  },
-  "calendar-arrow-right": {
-   "tags": [
-    "date",
-    "day",
-    "month",
-    "year",
-    "event",
-    "arrow",
-    "direction",
-    "navigation",
-    "next",
-    "forward",
-    "future",
-    "upcoming",
-    "later",
-    "reschedule",
-    "postpone",
-    "defer",
-    "schedule",
-    "timeline",
-    "appointment"
-   ],
-   "categories": [
-    "time",
-    "arrows",
-    "navigation"
    ]
   },
   "calendar-arrow-up": {
@@ -6397,55 +6292,6 @@
    ],
    "aliases": [
     "pie-chart"
-   ]
-  },
-  "chart-quadrant": {
-   "tags": [
-    "quadrant",
-    "chart",
-    "diagram",
-    "statistics",
-    "analytics",
-    "graph",
-    "chart-scatter",
-    "scatter plot",
-    "2x2",
-    "matrix",
-    "segmentation",
-    "correlation",
-    "comparison",
-    "risk",
-    "swot",
-    "clustering"
-   ],
-   "categories": [
-    "charts",
-    "science",
-    "math"
-   ]
-  },
-  "chart-radar": {
-   "tags": [
-    "radar",
-    "chart",
-    "diagram",
-    "shape",
-    "gem",
-    "mineral",
-    "pentagon",
-    "multidimensional",
-    "metrics",
-    "performance",
-    "comparison",
-    "profile",
-    "analytics",
-    "visualization",
-    "attributes"
-   ],
-   "categories": [
-    "charts",
-    "shapes",
-    "science"
    ]
   },
   "chart-scatter": {
@@ -9650,26 +9496,6 @@
     "development"
    ]
   },
-  "database-cog": {
-   "tags": [
-    "db",
-    "settings",
-    "configuration",
-    "preferences",
-    "gear",
-    "admin",
-    "sql",
-    "storage",
-    "server",
-    "maintenance",
-    "schema",
-    "query",
-    "relational"
-   ],
-   "categories": [
-    "development"
-   ]
-  },
   "database-minus": {
    "tags": [
     "storage",
@@ -10607,53 +10433,6 @@
    "categories": [
     "medical",
     "accessibility"
-   ]
-  },
-  "earbuds": {
-   "tags": [
-    "earphones",
-    "audio",
-    "sound",
-    "bluetooth",
-    "wireless",
-    "music",
-    "noise cancelling",
-    "acoustics",
-    "stereo",
-    "media",
-    "listen",
-    "pairing",
-    "hands-free",
-    "speaker",
-    "volume"
-   ],
-   "categories": [
-    "devices"
-   ]
-  },
-  "earbuds-off": {
-   "tags": [
-    "earphones",
-    "audio",
-    "sound",
-    "bluetooth",
-    "wireless",
-    "music",
-    "noise cancelling",
-    "acoustics",
-    "stereo",
-    "media",
-    "listen",
-    "pairing",
-    "hands-free",
-    "speaker",
-    "volume",
-    "disconnected",
-    "disabled",
-    "inactive"
-   ],
-   "categories": [
-    "devices"
    ]
   },
   "earth": {
@@ -15932,24 +15711,6 @@
    "categories": [
     "devices",
     "notifications"
-   ]
-  },
-  "laser": {
-   "tags": [
-    "annotation",
-    "beam",
-    "draw",
-    "guide",
-    "highlight",
-    "pointer",
-    "presentation",
-    "screen",
-    "spotlight",
-    "pointer device",
-    "projection"
-   ],
-   "categories": [
-    "tools"
    ]
   },
   "lasso": {
@@ -25652,25 +25413,6 @@
     "medical"
    ]
   },
-  "siren-off": {
-   "tags": [
-    "police",
-    "ambulance",
-    "emergency",
-    "security",
-    "alert",
-    "alarm",
-    "light",
-    "disabled",
-    "mute",
-    "silent",
-    "silence",
-    "inactive"
-   ],
-   "categories": [
-    "medical"
-   ]
-  },
   "sixteenth-notes": {
    "tags": [
     "audio",
@@ -26707,160 +26449,6 @@
    ],
    "aliases": [
     "chevron-up-square"
-   ]
-  },
-  "square-chevrons-down": {
-   "tags": [
-    "bottom",
-    "descend",
-    "page",
-    "page down",
-    "scroll",
-    "jump",
-    "south",
-    "caret",
-    "button",
-    "keyboard",
-    "skip",
-    "end",
-    "last page",
-    "latest",
-    "feed",
-    "chat",
-    "pagination",
-    "fast",
-    "media",
-    "menu",
-    "panel",
-    "double-arrow",
-    "outlined",
-    "border",
-    "seek",
-    "rewind",
-    "controls",
-    "fast-forward"
-   ],
-   "categories": [
-    "arrows",
-    "navigation",
-    "multimedia"
-   ]
-  },
-  "square-chevrons-left": {
-   "tags": [
-    "previous",
-    "back",
-    "rewind",
-    "backward",
-    "first",
-    "beginning",
-    "start",
-    "west",
-    "music",
-    "caret",
-    "button",
-    "keyboard",
-    "menu",
-    "panel",
-    "pagination",
-    "skip",
-    "skip-back",
-    "seek-back",
-    "media-controls",
-    "player",
-    "playlist",
-    "track",
-    "chapter",
-    "jump",
-    "timeline",
-    "controls",
-    "seek",
-    "media"
-   ],
-   "categories": [
-    "arrows",
-    "navigation",
-    "multimedia"
-   ]
-  },
-  "square-chevrons-right": {
-   "tags": [
-    "next",
-    "forward",
-    "skip",
-    "fast forward",
-    "last",
-    "end",
-    "east",
-    "music",
-    "caret",
-    "button",
-    "keyboard",
-    "menu",
-    "panel",
-    "pagination",
-    "jump",
-    "seek",
-    "seek forward",
-    "player control",
-    "chapter",
-    "track",
-    "timeline",
-    "navigation control",
-    "double arrow",
-    "media controls",
-    "toolbar",
-    "keyboard shortcut",
-    "skip-to-end",
-    "end-of-list"
-   ],
-   "categories": [
-    "arrows",
-    "navigation",
-    "multimedia"
-   ]
-  },
-  "square-chevrons-up": {
-   "tags": [
-    "top",
-    "ascend",
-    "page",
-    "page up",
-    "back to top",
-    "scroll",
-    "jump",
-    "north",
-    "caret",
-    "button",
-    "keyboard",
-    "skip",
-    "pagination",
-    "first page",
-    "fast",
-    "fast scroll",
-    "rewind",
-    "jump to start",
-    "floating action button",
-    "anchor",
-    "mac",
-    "control",
-    "ctrl",
-    "menu",
-    "panel",
-    "timeline",
-    "start",
-    "first",
-    "return",
-    "double arrow",
-    "seek",
-    "playlist",
-    "floating action"
-   ],
-   "categories": [
-    "arrows",
-    "navigation",
-    "multimedia",
-    "layout"
    ]
   },
   "square-code": {
@@ -30955,25 +30543,6 @@
    "categories": [
     "account",
     "social"
-   ]
-  },
-  "user-round-shield": {
-   "tags": [
-    "security",
-    "protection",
-    "admin",
-    "guard",
-    "privacy",
-    "account",
-    "role",
-    "permissions",
-    "profile",
-    "identity",
-    "trusted"
-   ],
-   "categories": [
-    "account",
-    "security"
    ]
   },
   "user-round-star": {

@@ -13,7 +13,18 @@ Browse everything in Storybook: `yarn dev`.
 The package is published to **GitHub Packages**, which needs a token even for public packages.
 
 1. Create a GitHub personal access token with the `read:packages` scope.
-2. Add an `.npmrc` to your app (or `~/.npmrc`):
+2. Point the `@bernardoestrada` scope at GitHub Packages.
+
+   Yarn 4, in your app's `.yarnrc.yml` (Yarn 4 doesn't read `.npmrc`):
+
+   ```yaml
+   npmScopes:
+     bernardoestrada:
+       npmRegistryServer: "https://npm.pkg.github.com"
+       npmAuthToken: "${GITHUB_TOKEN}"
+   ```
+
+   npm or Yarn 1, in your app's `.npmrc` (or `~/.npmrc`):
 
    ```ini
    @bernardoestrada:registry=https://npm.pkg.github.com
@@ -197,6 +208,8 @@ The search index (tags, categories, former names; about 65 KB gzipped) loads whe
 
 ## Development
 
+The repo uses Yarn 4 (pinned in `package.json`'s `packageManager`). Run `corepack enable` once so `yarn` picks that version. Yarn's 24-hour quarantine is on (`.yarnrc.yml`), so dependency versions published less than a day ago won't install.
+
 ```bash
 yarn              # install
 yarn dev          # Storybook on :6006
@@ -215,7 +228,7 @@ yarn icons:update --check   # show newer versions of the icon packages
 yarn icons:update           # upgrade them, regenerate, and list added/removed icons
 ```
 
-`icons:update` upgrades `lucide-react`, `@lucide/lab` and `react-icons`. It also fetches Lucide's icon metadata (tags, categories, former names) from the [Lucide repo](https://github.com/lucide-icons/lucide) at the tag matching `lucide-react`'s version, using a shallow sparse clone, and saves it to `scripts/data/lucide-metadata.json`. Builds read that file, so they never need the network. Use `--metadata` to re-fetch it without upgrading anything.
+`icons:update` upgrades `lucide-react`, `@lucide/lab` and `react-icons` to their newest versions that are past Yarn's quarantine (`npmMinimalAgeGate`), so it never picks a release your install would reject. It also fetches Lucide's icon metadata (tags, categories, former names) from the [Lucide repo](https://github.com/lucide-icons/lucide) at the tag matching `lucide-react`'s version, using a shallow sparse clone, and saves it to `scripts/data/lucide-metadata.json`. Builds read that file, so they never need the network. Use `--metadata` to re-fetch it without upgrading anything.
 
 If the script reports removed icons, release the update as a breaking change: apps may import those icons or have their names stored. Deprecated Lucide icons are hidden from the picker but still work.
 

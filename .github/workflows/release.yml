@@ -21,8 +21,12 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: "@bernardoestrada"
 
+      # Use the Yarn version from package.json's packageManager field.
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Typecheck and lint
         run: yarn typecheck && yarn lint

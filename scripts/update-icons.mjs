@@ -2,6 +2,7 @@
 // src/icons, and reports which icon names were added or removed.
 //
 //   yarn icons:update             upgrade + refresh metadata + regenerate + typecheck
+//                                 (only to versions older than Yarn's npmMinimalAgeGate)
 //   yarn icons:update --check     only show what's outdated; change nothing
 //   yarn icons:update --metadata  re-fetch metadata even if it looks current
 //
@@ -32,7 +33,30 @@ const run = (cmd, args, opts = {}) =>
 const installed = (name) => JSON.parse(readFileSync(join(root, "node_modules", name, "package.json"), "utf8")).version;
 // Yarn passes its own npm_config_* vars to child processes, which makes npm warn.
 const npmEnv = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith("npm_config_")));
-const latest = (name) => run("npm", ["view", name, "version"], { env: npmEnv });
+// Honour Yarn's release quarantine: only versions published at least
+// npmMinimalAgeGate minutes ago are eligible, same as `yarn install` would allow.
+const ageGateMinutes = Number(run("yarn", ["config", "get", "npmMinimalAgeGate"])) || 0;
+const semverParts = (v) => v.split(".").map(Number);
+const semverCompare = (a, b) => {
+  const [x, y] = [semverParts(a), semverParts(b)];
+  return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
+};
+const tooNew = {};
+function latest(name) {
+  const times = JSON.parse(run("npm", ["view", name, "time", "--json"], { env: npmEnv }));
+  const cutoff = Date.now() - ageGateMinutes * 60_000;
+  const stable = Object.entries(times)
+    .filter(([v]) => /^\d+\.\d+\.\d+$/.test(v))
+    .sort(([a], [b]) => semverCompare(a, b));
+  const allowed = stable.filter(([, t]) => Date.parse(t) <= cutoff);
+  const newest = stable.at(-1);
+  const pick = allowed.at(-1);
+  if (newest && pick && newest[0] !== pick[0]) {
+    const hours = Math.round((Date.now() - Date.parse(newest[1])) / 3_600_000);
+    tooNew[name] = `${newest[0]} is ${hours}h old`;
+  }
+  return pick?.[0] ?? installed(name);
+}
 const metadataVersion = () =>
   existsSync(metadataPath) ? JSON.parse(readFileSync(metadataPath, "utf8")).version : "none";
 
@@ -42,10 +66,11 @@ const versions = Object.fromEntries(deps.map((name) => [name, { current: install
 // Metadata must describe the icon set lucide-react ships.
 versions["lucide metadata"] = { current: metadataVersion(), latest: versions["lucide-react"].latest };
 
-console.log("Icon sources:");
+console.log(`Icon sources (newest versions at least ${ageGateMinutes / 60}h old):`);
 for (const [name, v] of Object.entries(versions)) {
   const mark = v.current === v.latest ? "up to date" : `${v.current} → ${v.latest}`;
-  console.log(`  ${name.padEnd(16)} ${mark}`);
+  const held = tooNew[name] ? `  (${tooNew[name]}, still quarantined)` : "";
+  console.log(`  ${name.padEnd(16)} ${mark}${held}`);
 }
 
 const outdated = Object.entries(versions).filter(([, v]) => v.current !== v.latest);
@@ -157,7 +182,7 @@ if (removed) {
 
 console.log("\nType-checking…");
 try {
-  run("yarn", ["-s", "typecheck"], { stdio: "inherit" });
+  run("yarn", ["typecheck"], { stdio: "inherit" });
   console.log("Done. Review the diff, then commit and tag a release.");
 } catch {
   console.error("\nType check failed (see above). The icon files were regenerated; fix the errors before releasing.");
