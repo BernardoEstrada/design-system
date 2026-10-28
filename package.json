@@ -1,6 +1,6 @@
 {
   "name": "@bernardoestrada/design-system",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React + DaisyUI v5 component library and theme collection",
   "license": "MIT",
   "repository": {
@@ -16,6 +16,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./icon-picker": {
+      "types": "./dist/icon-picker.d.ts",
+      "import": "./dist/icon-picker.js",
+      "require": "./dist/icon-picker.cjs"
     },
     "./icons": {
       "types": "./dist/icons/index.d.ts",
@@ -68,6 +73,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "daisyui": "^5.0.0",
     "eslint": "^9.9.0",
+    "lucide-static": "^1.63.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^10.4.1",

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { cx } from "../../utils/cx";
 import { Button } from "../Button/Button";
 
@@ -21,6 +21,10 @@ interface DropdownProps {
   children?: ReactNode;
   position?: DropdownPosition;
   align?: DropdownAlign;
+  /** Controlled open state. Leave undefined to let the dropdown manage it. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  triggerClassName?: string;
   className?: string;
 }
 
@@ -44,9 +48,20 @@ export function Dropdown({
   children,
   position = "bottom",
   align = "start",
+  open: openProp,
+  onOpenChange,
+  triggerClassName,
   className = "",
 }: DropdownProps) {
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const open = openProp ?? openState;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (openProp === undefined) setOpenState(next);
+      onOpenChange?.(next);
+    },
+    [openProp, onOpenChange],
+  );
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,7 +78,7 @@ export function Dropdown({
       document.removeEventListener("pointerdown", onPointer);
       document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   return (
     <div
@@ -81,7 +96,8 @@ export function Dropdown({
         variant={triggerVariant}
         aria-haspopup="menu"
         aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
+        className={triggerClassName}
+        onClick={() => setOpen(!open)}
       >
         {trigger}
       </Button>

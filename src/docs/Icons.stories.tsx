@@ -3,6 +3,7 @@ import { AppleCore, Avocado, Camera, Heart, Pizza, Rocket, Search, Settings } fr
 import { FaBeer, FaGithub } from "../icons/fa";
 import { MdHome, MdSettings } from "../icons/md";
 import { SiReact, SiTailwindcss } from "../icons/si";
+import { DynamicIcon } from "../icons/dynamic";
 
 const meta: Meta = {
   title: "Foundations/Icons",
@@ -28,6 +29,9 @@ export const Sources: StoryObj = {
       </Row>
       <Row title="Lucide Lab (same import)" code='import { AppleCore } from "@bernardoestrada/design-system/icons"'>
         <AppleCore /> <Avocado />
+      </Row>
+      <Row title="Dynamic (by name, loaded on demand)" code='import { DynamicIcon } from "@bernardoestrada/design-system/icons/dynamic"'>
+        <DynamicIcon name="camera" /> <DynamicIcon name="apple-core" /> <DynamicIcon name="sailboat" />
       </Row>
       <Row title="react-icons (one path per pack)" code='import { FaBeer } from "@bernardoestrada/design-system/icons/fa"'>
         <FaBeer size={24} /> <FaGithub size={24} /> <MdHome size={24} /> <MdSettings size={24} />

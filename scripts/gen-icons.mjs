@@ -3,6 +3,10 @@
 //   lab.ts          → @lucide/lab icons as React components
 //   <pack>.ts       → one re-export per react-icons pack (@bernardoestrada/design-system/icons/fa, …)
 //   react-icons.ts  → react-icons' shared helpers (IconContext, IconBase, …)
+//   lab-names.ts    → lab icon names (kebab-case), without loading the icons
+//   dynamic.ts      → DynamicIcon + iconNames for Lucide and Lab   (…/icons/dynamic)
+//   lucide-names.ts → canonical lucide names, no aliases (used by IconPicker)
+//   tags.json       → lucide search tags keyed by kebab-case name (lazy-loaded by IconPicker)
 //
 // Runs before every build so new packs / lab icons show up after a dependency upgrade.
 import { mkdirSync, readdirSync, rmSync, writeFileSync, existsSync } from "node:fs";
@@ -44,6 +48,9 @@ const labLines = [
     ];
   }),
   "",
+  "/** All lab icons by kebab-case name. Used by DynamicIcon; tree-shaken away otherwise. */",
+  `export const labIcons = {\n${labNames.map((n) => `  "${kebab(n)}": ${pascal(n)},`).join("\n")}\n};`,
+  "",
 ];
 writeFileSync(join(outDir, "lab.ts"), labLines.join("\n"));
 
@@ -54,6 +61,31 @@ const labExports = labNames.flatMap((n) => [pascal(n), `${pascal(n)}Icon`]);
 writeFileSync(
   join(outDir, "index.ts"),
   `${header}export * from "lucide-react";\nexport {\n${labExports.map((n) => `  ${n},`).join("\n")}\n} from "./lab";\n`,
+);
+
+writeFileSync(
+  join(outDir, "lab-names.ts"),
+  `${header}export const labIconNames = [\n${labNames.map((n) => `  "${kebab(n)}",`).join("\n")}\n] as const;\n\nexport type LabIconName = (typeof labIconNames)[number];\n`,
+);
+
+writeFileSync(
+  join(outDir, "dynamic.ts"),
+  `${header}export { DynamicIcon, iconNames, type IconName, type DynamicIconProps } from "../components/DynamicIcon/DynamicIcon";\n`,
+);
+
+// ── Lucide search tags (lucide-static is a dev-only dependency) ────────────
+const rawTags = require("lucide-static/tags.json");
+// Only canonical names (no aliases) that this lucide-react version can load.
+const { iconNames: dynamicNames } = await import("lucide-react/dynamic");
+const loadable = new Set(dynamicNames);
+const tags = {};
+for (const [name, list] of Object.entries(rawTags)) {
+  if (loadable.has(name)) tags[name] = list;
+}
+writeFileSync(join(outDir, "tags.json"), JSON.stringify(tags) + "\n");
+writeFileSync(
+  join(outDir, "lucide-names.ts"),
+  `${header}import type { IconName } from "lucide-react/dynamic";\n\nexport const lucideCanonicalNames: IconName[] = ${JSON.stringify(Object.keys(tags))};\n`,
 );
 
 // ── react-icons packs ─────────────────────────────────────────────────────
@@ -71,7 +103,10 @@ writeFileSync(join(outDir, "react-icons.ts"), `${header}export * from "react-ico
 // Read by vite.config.ts to build one entry per file.
 writeFileSync(
   join(outDir, "entries.json"),
-  JSON.stringify(["index", "lab", "react-icons", ...packs], null, 2) + "\n",
+  JSON.stringify(["index", "lab", "dynamic", "react-icons", ...packs], null, 2) + "\n",
 );
 
-console.log(`icons: ${labNames.length} lab icons, ${packs.length} react-icons packs`);
+console.log(
+  `icons: ${labNames.length} lab icons, ${packs.length} react-icons packs, ` +
+    `tags for ${Object.keys(tags).length}/${Object.keys(lucide.icons).length} lucide icons`,
+);

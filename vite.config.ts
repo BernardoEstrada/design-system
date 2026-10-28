@@ -17,6 +17,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: 'src/index.ts',
+        'icon-picker': 'src/icon-picker.ts',
         ...Object.fromEntries(iconEntries.map((name) => [`icons/${name}`, `src/icons/${name}.ts`])),
       },
       formats: ['es', 'cjs'],
@@ -29,8 +30,8 @@ export default defineConfig({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        'lucide-react',
-        '@lucide/lab',
+        /^lucide-react(\/.*)?$/,
+        /^@lucide\/lab(\/.*)?$/,
         /^react-icons(\/.*)?$/,
       ],
     },

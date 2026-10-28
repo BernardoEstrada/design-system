@@ -120,11 +120,15 @@ Icons are not exported from the package root; they live under `/icons`:
 import { Pizza, AppleCore } from "@bernardoestrada/design-system/icons";
 // react-icons — same pack names as react-icons (fa, fa6, md, si, tb, …)
 import { FaBeer } from "@bernardoestrada/design-system/icons/fa";
+// Lucide + Lab by kebab-case name, loaded on demand (same API as lucide-react/dynamic)
+import { DynamicIcon } from "@bernardoestrada/design-system/icons/dynamic";
+// Searchable picker for Lucide + Lab; its value is a name for DynamicIcon
+import { IconPicker } from "@bernardoestrada/design-system/icon-picker";
 // react-icons helpers (IconContext, IconBase)
 import { IconContext } from "@bernardoestrada/design-system/icons/react-icons";
 ```
 
-`src/icons/` is **generated** by `scripts/gen-icons.mjs` (`yarn icons`; also runs on `yarn build`). Don't edit it by hand. The script wraps each `@lucide/lab` icon with `createLucideIcon`, skips lab icons that `lucide-react` already ships, and writes one re-export file per react-icons pack. `lucide-react`, `@lucide/lab` and `react-icons` are kept external in the Vite build so consumers tree-shake them per icon.
+`src/icons/` is **generated** by `scripts/gen-icons.mjs` (`yarn icons`; also runs on `yarn build`). Don't edit it by hand. The script wraps each `@lucide/lab` icon with `createLucideIcon`, skips lab icons that `lucide-react` already ships, writes one re-export file per react-icons pack, and extracts Lucide search tags from `lucide-static` (dev-only; keep its version in step with `lucide-react`). `lucide-react`, `@lucide/lab` and `react-icons` are kept external in the Vite build so consumers tree-shake them per icon.
 
 ## Source themes reference
 
