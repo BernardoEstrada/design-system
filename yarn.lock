@@ -603,6 +603,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@lucide/lab@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@lucide/lab/-/lab-0.7.0.tgz#31b94f360e3569699d893c50ff543d175ae1dfd7"
+  integrity sha512-Cy4z/LUtre/XnnWTIRfgAxSB2+OGF4oqZczgYr05iRa7ecNtDKVDmTbPc4Ak8LkJYj7jGGN+AfkR9MYgXmdRRA==
+
 "@microsoft/api-extractor-model@7.33.8":
   version "7.33.8"
   resolved "https://registry.yarnpkg.com/@microsoft/api-extractor-model/-/api-extractor-model-7.33.8.tgz#d715b0090610cce62c0b248a3eb07466cb10e9f1"
@@ -2456,10 +2461,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lucide-react@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-1.17.0.tgz#5b8ddd7d6975e3e45dc9d03025afc7674d78f8a8"
-  integrity sha512-9FA9evdox/JQL5PT57fdA1x/yg8T7knJ98+zjTL3UfKza6pflQUUh3XtaQIHKvnsJw1lmsEyHVlt5jchYxOQ5w==
+lucide-react@^1.63.0:
+  version "1.63.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-1.63.0.tgz#eb7e0d4304030b4fb06b427db397b82ce18e2b35"
+  integrity sha512-GkBfQG+FUJ41x6y3/lNXiOziVU0Rcqqq0TCzhHS8avsFXHZmOdmfBqsVTvHSaVmbI+wbdGkxHRmhYWhD3N4/yA==
 
 magic-string@^0.30.0, magic-string@^0.30.17, magic-string@^0.30.21:
   version "0.30.21"
@@ -2760,6 +2765,11 @@ react-dom@^18.3.1:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-icons@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.7.0.tgz#8969db00968ffdfc57fdc2ec9dd1ed88e35b3de9"
+  integrity sha512-LBLy340Rzqy6+/yVhZKT3B/QpP1BZaesGqasf09HPOBzRarcDIFH0WwXlXQfE7q7ipxK4MSiC5DIBWURCny6fw==
 
 react-refresh@^0.17.0:
   version "0.17.0"

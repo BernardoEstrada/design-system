@@ -111,6 +111,21 @@ And in React:
 import { Button } from "@bernardoestrada/design-system";
 ```
 
+### Icons
+
+Icons are not exported from the package root; they live under `/icons`:
+
+```tsx
+// Lucide (default) + @lucide/lab, as React components
+import { Pizza, AppleCore } from "@bernardoestrada/design-system/icons";
+// react-icons — same pack names as react-icons (fa, fa6, md, si, tb, …)
+import { FaBeer } from "@bernardoestrada/design-system/icons/fa";
+// react-icons helpers (IconContext, IconBase)
+import { IconContext } from "@bernardoestrada/design-system/icons/react-icons";
+```
+
+`src/icons/` is **generated** by `scripts/gen-icons.mjs` (`yarn icons`; also runs on `yarn build`). Don't edit it by hand. The script wraps each `@lucide/lab` icon with `createLucideIcon`, skips lab icons that `lucide-react` already ships, and writes one re-export file per react-icons pack. `lucide-react`, `@lucide/lab` and `react-icons` are kept external in the Vite build so consumers tree-shake them per icon.
+
 ## Source themes reference
 
 - **navigator / command** — ported from `../wendid/frontend/src/styles/themes/`. Full DaisyUI v5 CSS-variable format with component-level custom properties.

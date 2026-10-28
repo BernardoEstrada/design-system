@@ -1,7 +1,5 @@
 import "./index.css";
 
-export * from "lucide-react";
-
 // Actions & display
 export { Button } from "./components/Button/Button";
 export { Badge } from "./components/Badge/Badge";

@@ -1,6 +1,6 @@
 {
   "name": "@bernardoestrada/design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React + DaisyUI v5 component library and theme collection",
   "license": "MIT",
   "repository": {
@@ -17,10 +17,24 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/index.css"
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js",
+      "require": "./dist/icons/index.cjs"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js",
+      "require": "./dist/icons/*.cjs"
+    },
+    "./styles": {
+      "types": "./types/styles.d.ts",
+      "default": "./dist/index.css"
+    }
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
@@ -28,18 +42,21 @@
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/gen-icons.mjs && tsc -b && vite build",
     "build-storybook": "storybook build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "icons": "node scripts/gen-icons.mjs"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "dependencies": {
-    "lucide-react": "^1.17.0"
+    "@lucide/lab": "^0.7.0",
+    "lucide-react": "^1.63.0",
+    "react-icons": "^5.7.0"
   },
   "devDependencies": {
     "@storybook/addon-themes": "^10.4.1",

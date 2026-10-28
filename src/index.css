@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Generated icon re-exports contain no class names; skip scanning them. */
+@source not "./icons";
 
 @plugin "daisyui" {
   themes: all;
