@@ -128,7 +128,7 @@ import { IconPicker } from "@bernardoestrada/design-system/icon-picker";
 import { IconContext } from "@bernardoestrada/design-system/icons/react-icons";
 ```
 
-`src/icons/` is **generated** by `scripts/gen-icons.mjs` (`yarn icons`; also runs on `yarn build`). Don't edit it by hand. The script wraps each `@lucide/lab` icon with `createLucideIcon`, skips lab icons that `lucide-react` already ships, writes one re-export file per react-icons pack, and extracts Lucide search tags from `lucide-static` (dev-only; keep its version in step with `lucide-react`). `lucide-react`, `@lucide/lab` and `react-icons` are kept external in the Vite build so consumers tree-shake them per icon.
+`src/icons/` is **generated** by `scripts/gen-icons.mjs` (`yarn icons`; also runs on `yarn build`). Don't edit it by hand. The script wraps each `@lucide/lab` icon with `createLucideIcon`, skips lab icons that `lucide-react` already ships, writes one re-export file per react-icons pack, and builds the IconPicker search index (tags, categories, aliases) from `scripts/data/lucide-metadata.json`. That file is fetched from the Lucide GitHub repo by `yarn icons:update` (never during builds); refresh it with `yarn icons:update --metadata`. `lucide-react`, `@lucide/lab` and `react-icons` are kept external in the Vite build so consumers tree-shake them per icon.
 
 ## Source themes reference
 

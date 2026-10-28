@@ -5,11 +5,15 @@
 //   react-icons.ts  → react-icons' shared helpers (IconContext, IconBase, …)
 //   lab-names.ts    → lab icon names (kebab-case), without loading the icons
 //   dynamic.ts      → DynamicIcon + iconNames for Lucide and Lab   (…/icons/dynamic)
-//   lucide-names.ts → canonical lucide names, no aliases (used by IconPicker)
-//   tags.json       → lucide search tags keyed by kebab-case name (lazy-loaded by IconPicker)
+//   lucide-names.ts → canonical lucide names, no aliases or deprecated icons (used by IconPicker)
+//   categories.ts   → icon categories with display titles (used by IconPicker)
+//   search-index.json → tags, categories and aliases per icon (lazy-loaded by IconPicker)
+//
+// Lucide/Lab metadata comes from scripts/data/lucide-metadata.json, which
+// `yarn icons:update` fetches from the Lucide repo. Nothing here hits the network.
 //
 // Runs before every build so new packs / lab icons show up after a dependency upgrade.
-import { mkdirSync, readdirSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -73,19 +77,66 @@ writeFileSync(
   `${header}export { DynamicIcon, iconNames, type IconName, type DynamicIconProps } from "../components/DynamicIcon/DynamicIcon";\n`,
 );
 
-// ── Lucide search tags (lucide-static is a dev-only dependency) ────────────
-const rawTags = require("lucide-static/tags.json");
-// Only canonical names (no aliases) that this lucide-react version can load.
+// ── Search index from Lucide metadata ─────────────────────────────────────
+const metadataPath = join(root, "scripts/data/lucide-metadata.json");
+if (!existsSync(metadataPath)) {
+  console.error("Missing scripts/data/lucide-metadata.json. Run `yarn icons:update --metadata`.");
+  process.exit(1);
+}
+const meta = JSON.parse(readFileSync(metadataPath, "utf8"));
+const lucideVersion = JSON.parse(readFileSync(require.resolve("lucide-react/package.json"), "utf8")).version;
+if (meta.version !== lucideVersion) {
+  console.warn(
+    `⚠ Icon metadata is for lucide ${meta.version} but lucide-react ${lucideVersion} is installed. ` +
+      "Run `yarn icons:update` to refresh it.",
+  );
+}
+
+// Canonical names this lucide-react version can load; aliases and deprecated icons are left out.
 const { iconNames: dynamicNames } = await import("lucide-react/dynamic");
 const loadable = new Set(dynamicNames);
-const tags = {};
-for (const [name, list] of Object.entries(rawTags)) {
-  if (loadable.has(name)) tags[name] = list;
-}
-writeFileSync(join(outDir, "tags.json"), JSON.stringify(tags) + "\n");
+const lucideNames = Object.keys(meta.icons).filter((n) => loadable.has(n) && !meta.icons[n].deprecated);
+
+// Lab still uses a few older category names; fold them into Lucide's.
+const legacyCategories = { money: "finance", currency: "finance", maths: "math", maps: "navigation", furniture: "home" };
+const labMeta = (n) => {
+  const d = meta.lab[n] ?? { tags: [], categories: [] };
+  return { ...d, categories: [...new Set(d.categories.map((c) => legacyCategories[c] ?? c))] };
+};
+
+const labKebab = labNames.map(kebab);
+const indexed = [...lucideNames.map((n) => [n, meta.icons[n]]), ...labKebab.map((n) => [n, labMeta(n)])];
+
+// Only categories that at least one indexed icon uses, sorted by title.
+const usedCategories = [...new Set(indexed.flatMap(([, d]) => d.categories))]
+  .sort((a, b) => (meta.categories[a] ?? a).localeCompare(meta.categories[b] ?? b));
+const categoryIndex = new Map(usedCategories.map((id, i) => [id, i]));
+
+// Compact: { c: [category ids], i: { name: ["tag|tag", [categoryIdx], [aliases]?] } }
+const searchIndex = {
+  c: usedCategories,
+  i: Object.fromEntries(
+    indexed.map(([name, d]) => {
+      const row = [d.tags.join("|"), d.categories.map((c) => categoryIndex.get(c))];
+      if (d.aliases?.length) row.push(d.aliases);
+      return [name, row];
+    }),
+  ),
+};
+writeFileSync(join(outDir, "search-index.json"), JSON.stringify(searchIndex) + "\n");
+
 writeFileSync(
   join(outDir, "lucide-names.ts"),
-  `${header}import type { IconName } from "lucide-react/dynamic";\n\nexport const lucideCanonicalNames: IconName[] = ${JSON.stringify(Object.keys(tags))};\n`,
+  `${header}import type { IconName } from "lucide-react/dynamic";\n\nexport const lucideCanonicalNames: IconName[] = ${JSON.stringify(lucideNames)};\n`,
+);
+
+writeFileSync(
+  join(outDir, "categories.ts"),
+  `${header}/** Icon categories from Lucide, sorted by title. */\nexport const iconCategories = ${JSON.stringify(
+    usedCategories.map((id) => ({ id, title: meta.categories[id] ?? id[0].toUpperCase() + id.slice(1).replace(/-/g, " ") })),
+    null,
+    2,
+  )} as const;\n\nexport type IconCategory = (typeof iconCategories)[number]["id"];\n`,
 );
 
 // ── react-icons packs ─────────────────────────────────────────────────────
@@ -106,7 +157,8 @@ writeFileSync(
   JSON.stringify(["index", "lab", "dynamic", "react-icons", ...packs], null, 2) + "\n",
 );
 
+const labWithMeta = labKebab.filter((n) => n in meta.lab).length;
 console.log(
-  `icons: ${labNames.length} lab icons, ${packs.length} react-icons packs, ` +
-    `tags for ${Object.keys(tags).length}/${Object.keys(lucide.icons).length} lucide icons`,
+  `icons: ${lucideNames.length} lucide + ${labNames.length} lab icons (${labWithMeta} with metadata), ` +
+    `${usedCategories.length} categories, ${packs.length} react-icons packs`,
 );

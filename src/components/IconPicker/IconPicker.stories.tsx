@@ -18,6 +18,7 @@ export const WithValue: Story = { args: { defaultValue: "apple-core", hint: "Lab
 export const Inline: Story = { args: { inline: true, label: undefined } };
 export const LabOnly: Story = { args: { sources: ["lab"], label: "Lab icon" } };
 export const NoLoadMore: Story = { args: { loadMore: false, hint: "Only the first 160 icons; search for the rest." } };
+export const NoFilters: Story = { args: { categoryFilter: false, sources: ["lucide"], label: "Lucide only, no filters" } };
 export const WithError: Story = { args: { error: "Pick an icon." } };
 
 export const Controlled: Story = {

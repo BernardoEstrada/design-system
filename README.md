@@ -126,7 +126,7 @@ Prefer static imports when you know the icon at build time.
 
 ### Icon picker
 
-A searchable picker for Lucide and Lab icons. Search matches icon names and Lucide's tags (so "delete" finds trash icons). The value is a name you can pass to `DynamicIcon`.
+A searchable picker for Lucide and Lab icons. Search matches names first, then former names (`trash-2` finds `trash`), tags ("home" finds `house`) and categories ("money" finds coins and wallets). A dropdown filters by Lucide's categories. The value is a name you can pass to `DynamicIcon`.
 
 ```tsx
 import { IconPicker } from "@bernardoestrada/design-system/icon-picker";
@@ -138,7 +138,18 @@ const [icon, setIcon] = useState<string | null>("rocket");
 {icon && <DynamicIcon name={icon as IconName} />}
 ```
 
-Useful props: `sources={["lab"]}` to limit the icon sets, `inline` to render the panel without a button, `clearable`, `maxResults` (icons per page), `loadMore={false}` to drop the "Load more" button.
+Useful props:
+
+| Prop | Default | |
+|---|---|---|
+| `sources` | `["lucide", "lab"]` | Icon sets to offer; with both, an All / Lucide / Lab toggle appears |
+| `categoryFilter` | `true` | Show the category dropdown |
+| `loadMore` | `true` | Show a "Load more" button below the results |
+| `maxResults` | `160` | Icons per page |
+| `inline` | `false` | Render the panel without a button |
+| `clearable` | `true` | Offer a "Clear" button |
+
+The search index (tags, categories, former names; about 65 KB gzipped) loads when a picker first mounts. To search outside a picker, use `searchIcons(query, { sources, category })` after `await preloadIconSearch()`.
 
 ## Entry points
 
@@ -171,7 +182,9 @@ yarn icons:update --check   # show newer versions of the icon packages
 yarn icons:update           # upgrade them, regenerate, and list added/removed icons
 ```
 
-`icons:update` upgrades `lucide-react`, `@lucide/lab` and `react-icons`, and keeps `lucide-static` (source of the search tags) on the same version as `lucide-react`. If it reports removed icons, release the update as a breaking change: apps may import those icons or have their names stored.
+`icons:update` upgrades `lucide-react`, `@lucide/lab` and `react-icons`. It also fetches Lucide's icon metadata (tags, categories, former names) from the [Lucide repo](https://github.com/lucide-icons/lucide) at the tag matching `lucide-react`'s version, using a shallow sparse clone, and saves it to `scripts/data/lucide-metadata.json`. Builds read that file, so they never need the network. Use `--metadata` to re-fetch it without upgrading anything.
+
+If the script reports removed icons, release the update as a breaking change: apps may import those icons or have their names stored. Deprecated Lucide icons are hidden from the picker but still work.
 
 ### Adding a theme
 
