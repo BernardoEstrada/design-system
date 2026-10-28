@@ -1,11 +1,22 @@
-import { useDeferredValue, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import { ChevronDown, Search } from "lucide-react";
 import { iconCategories, type IconCategory } from "../../icons/categories";
 import { labIconNames } from "../../icons/lab-names";
 import { lucideCanonicalNames } from "../../icons/lucide-names";
 import { cx } from "../../utils/cx";
 import { DynamicIcon, type IconName } from "../DynamicIcon/DynamicIcon";
+import { Button } from "../Button/Button";
 import { Dropdown } from "../Dropdown/Dropdown";
+import { Modal } from "../Modal/Modal";
 import { Field } from "../Field/Field";
 
 export type IconSource = "lucide" | "lab";
@@ -133,6 +144,21 @@ export function searchIcons(query: string, options: SearchIconsOptions | IconSou
     .map((r) => r.e);
 }
 
+// Matches Tailwind's `sm` breakpoint: below it the picker opens as a bottom sheet.
+const SMALL_SCREEN = "(max-width: 639px)";
+function subscribeSmallScreen(onChange: () => void) {
+  const mq = window.matchMedia(SMALL_SCREEN);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+function useSmallScreen(): boolean {
+  return useSyncExternalStore(
+    subscribeSmallScreen,
+    () => window.matchMedia(SMALL_SCREEN).matches,
+    () => false,
+  );
+}
+
 // Same-size placeholder while an icon chunk loads, so the grid doesn't jump.
 const CellPlaceholder = () => <span className="bg-base-content/10 size-5 rounded" aria-hidden />;
 
@@ -147,6 +173,8 @@ interface PanelProps {
   loadMore: boolean;
   categoryFilter: boolean;
   columns: number;
+  /** Larger, touch-sized controls and a grid that fills the available width. */
+  touch: boolean;
   /** Focus the search box when this becomes true. */
   autoFocus: boolean;
 }
@@ -160,8 +188,10 @@ function IconPickerPanel({
   loadMore,
   categoryFilter,
   columns,
+  touch,
   autoFocus,
 }: PanelProps) {
+  const gridRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<IconSource | "all">("all");
   const [category, setCategory] = useState("");
@@ -237,7 +267,11 @@ function IconPickerPanel({
   };
 
   const onCellKey = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
-    const moves: Record<string, number> = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: columns, ArrowUp: -columns };
+    // Read the column count from the layout, since touch mode lets the grid decide it.
+    const cols = gridRef.current
+      ? getComputedStyle(gridRef.current).gridTemplateColumns.split(" ").length
+      : columns;
+    const moves: Record<string, number> = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols };
     const step = moves[e.key];
     if (step === undefined) return;
     e.preventDefault();
@@ -247,7 +281,8 @@ function IconPickerPanel({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="input input-sm w-full">
+      {/* 16px text on touch screens stops iOS from zooming in when the field is focused. */}
+      <label className={cx("input w-full", touch ? "text-base" : "input-sm")}>
         <Search className="size-4 opacity-60" aria-hidden />
         <input
           ref={inputRef}
@@ -261,14 +296,14 @@ function IconPickerPanel({
       </label>
 
       {(sources.length > 1 || categoryFilter) && (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {sources.length > 1 && (
             <div className="join" role="group" aria-label="Icon set">
               {(["all", ...sources] as const).map((s) => (
                 <button
                   key={s}
                   type="button"
-                  className={cx("btn btn-xs join-item", filter === s && "btn-active")}
+                  className={cx("btn join-item", touch ? "btn-sm" : "btn-xs", filter === s && "btn-active")}
                   aria-pressed={filter === s}
                   onClick={() => setFilter(s)}
                 >
@@ -279,7 +314,7 @@ function IconPickerPanel({
           )}
           {categoryFilter && (
             <select
-              className="select select-xs min-w-0 flex-1"
+              className={cx("select min-w-32 flex-1", touch ? "select-sm text-base" : "select-xs")}
               aria-label="Category"
               value={category}
               disabled={!indexReady}
@@ -298,8 +333,13 @@ function IconPickerPanel({
 
       {shown.length ? (
         <div
-          className="grid max-h-64 gap-1 overflow-y-auto"
-          style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+          ref={gridRef}
+          className={cx("grid gap-1 overflow-y-auto", touch ? "max-h-[45dvh]" : "max-h-64")}
+          style={{
+            gridTemplateColumns: touch
+              ? "repeat(auto-fill, minmax(2.75rem, 1fr))"
+              : `repeat(${columns}, minmax(0, 1fr))`,
+          }}
         >
           {shown.map(({ name }, i) => (
             <button
@@ -311,11 +351,15 @@ function IconPickerPanel({
               title={name}
               aria-label={name}
               aria-pressed={name === value}
-              className={cx("btn btn-square btn-sm", name === value ? "btn-primary" : "btn-ghost")}
+              className={cx(
+                "btn btn-square",
+                touch ? "size-11 justify-self-center" : "btn-sm",
+                name === value ? "btn-primary" : "btn-ghost",
+              )}
               onClick={() => onSelect(name)}
               onKeyDown={(e) => onCellKey(e, i)}
             >
-              <DynamicIcon name={name} className="size-5" aria-hidden fallback={CellPlaceholder} />
+              <DynamicIcon name={name} className={touch ? "size-6" : "size-5"} aria-hidden fallback={CellPlaceholder} />
             </button>
           ))}
           {loadMore && hasMore && (
@@ -400,36 +444,76 @@ export function IconPicker({
     setOpen(false);
   };
 
-  const panelProps = { value, onSelect: select, sources, clearable, maxResults, loadMore, categoryFilter, columns };
+  const small = useSmallScreen();
+  const panelProps = {
+    value,
+    onSelect: select,
+    sources,
+    clearable,
+    maxResults,
+    loadMore,
+    categoryFilter,
+    columns,
+    touch: small,
+  };
+
+  const triggerContent: ReactNode = (
+    <>
+      <span className="flex items-center gap-2">
+        {value && <DynamicIcon name={value as IconName} className="size-4" aria-hidden />}
+        <span className={value ? undefined : "opacity-60"}>{value ?? placeholder}</span>
+      </span>
+      <ChevronDown className="size-4 opacity-60" aria-hidden />
+    </>
+  );
+  const triggerClassName = cx("justify-between font-normal", error && "border-error");
+
+  let picker: ReactNode;
+  if (inline) {
+    picker = (
+      <div className={cx("card bg-base-100 border-base-300 w-full border p-3 sm:w-80", className)}>
+        <IconPickerPanel {...panelProps} autoFocus={false} />
+      </div>
+    );
+  } else if (small) {
+    // Bottom sheet on phones. No autofocus, so the keyboard doesn't cover the icons.
+    picker = (
+      <div className={className}>
+        <Button
+          type="button"
+          variant="outline"
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          className={cx("w-full", triggerClassName)}
+          onClick={() => setOpen(true)}
+        >
+          {triggerContent}
+        </Button>
+        <Modal open={open} onClose={() => setOpen(false)} position="bottom" title={label ?? placeholder}>
+          <IconPickerPanel {...panelProps} autoFocus={false} />
+        </Modal>
+      </div>
+    );
+  } else {
+    picker = (
+      <Dropdown
+        open={open}
+        onOpenChange={setOpen}
+        triggerVariant="outline"
+        triggerClassName={triggerClassName}
+        className={className}
+        trigger={triggerContent}
+      >
+        <div className="card bg-base-100 w-80 p-3 shadow-lg">
+          <IconPickerPanel {...panelProps} autoFocus={open} />
+        </div>
+      </Dropdown>
+    );
+  }
 
   return (
     <Field label={label} error={error} hint={hint}>
-      {inline ? (
-        <div className={cx("card bg-base-100 border-base-300 w-80 border p-3", className)}>
-          <IconPickerPanel {...panelProps} autoFocus={false} />
-        </div>
-      ) : (
-        <Dropdown
-          open={open}
-          onOpenChange={setOpen}
-          triggerVariant="outline"
-          triggerClassName={cx("justify-between font-normal", error && "border-error")}
-          className={className}
-          trigger={
-            <>
-              <span className="flex items-center gap-2">
-                {value && <DynamicIcon name={value as IconName} className="size-4" aria-hidden />}
-                <span className={value ? undefined : "opacity-60"}>{value ?? placeholder}</span>
-              </span>
-              <ChevronDown className="size-4 opacity-60" aria-hidden />
-            </>
-          }
-        >
-          <div className="card bg-base-100 w-80 p-3 shadow-lg">
-            <IconPickerPanel {...panelProps} autoFocus={open} />
-          </div>
-        </Dropdown>
-      )}
+      {picker}
     </Field>
   );
 }

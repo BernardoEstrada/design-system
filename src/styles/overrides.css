@@ -77,3 +77,25 @@ html[data-theme="navigator-light"] .bg-base-100:hover {
   box-shadow: var(--field-focus-shadow) !important;
   outline: none;
 }
+
+/* Popovers float over other content, where glass would make them see-through.
+   Keep them opaque, and give fields inside them a solid fill. These selectors
+   are more specific than the glass rules above, so they win between the
+   !important declarations. */
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .dropdown-content :is(.bg-base-100, .menu, .card) {
+  background: var(--color-base-100) !important;
+  backdrop-filter: none;
+  border: 1px solid var(--glass-border, transparent);
+  box-shadow: 0 8px 32px oklch(0% 0 0 / 35%) !important;
+}
+:is(html[data-theme^="navigator-"], html[data-theme^="command-"]) .dropdown-content :is(.input, .select, .textarea) {
+  background: var(--color-base-200) !important;
+  backdrop-filter: none;
+}
+
+/* Native <option> lists inherit the select's (possibly translucent) fill in some
+   browsers; give them the theme's solid surface in every theme. */
+html[data-theme] select option {
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+}

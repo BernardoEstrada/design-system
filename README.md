@@ -149,6 +149,8 @@ Useful props:
 | `inline` | `false` | Render the panel without a button |
 | `clearable` | `true` | Offer a "Clear" button |
 
+On screens narrower than 640 px the picker opens as a bottom sheet with touch-sized icons instead of a popover.
+
 The search index (tags, categories, former names; about 65 KB gzipped) loads when a picker first mounts. To search outside a picker, use `searchIcons(query, { sources, category })` after `await preloadIconSearch()`.
 
 ## Entry points
