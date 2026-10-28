@@ -44,4 +44,5 @@
 @import "./themes/neobrutalism.css";
 
 /* Component-level overrides driven by per-theme CSS vars */
+@import "./styles/components.css";
 @import "./styles/overrides.css";

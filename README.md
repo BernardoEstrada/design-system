@@ -2,7 +2,7 @@
 
 React component library and theme collection built on **Tailwind CSS v4** and **DaisyUI v5**, with Lucide, Lucide Lab and react-icons bundled in.
 
-- 18 components (forms, feedback, overlays, navigation, icon picker)
+- 19 components (forms, feedback, overlays, navigation, icon picker)
 - 40+ themes: custom app and editor themes plus every DaisyUI built-in, each with light/dark variants where available
 - Icons under their own entry points, so the root import stays small
 
@@ -76,13 +76,25 @@ applyTheme(Themes.NEOBRUTALISM, Appearance.DARK);
 | Group | Components |
 |---|---|
 | Actions & display | `Button`, `Badge`, `Card` |
-| Forms | `Input`, `Select`, `Textarea`, `Checkbox`, `Radio`, `Toggle`, `IconPicker`* |
+| Forms | `Input`, `Select`, `Textarea`, `Checkbox`, `Radio`, `Toggle`, `ColorPicker`, `IconPicker`* |
 | Feedback | `Alert`, `Loading`, `Progress`, `ToastProvider` + `useToast` |
 | Overlays & navigation | `Modal`, `Dropdown`, `Tabs`, `Tooltip` |
 
 \* `IconPicker` has its own entry point; see below.
 
 Form controls forward refs, so they work with form libraries such as react-hook-form.
+
+Icons go straight into most components as content. A few have props for them:
+
+```tsx
+import { Check, Moon, Plus, Rocket, Sun, X } from "@bernardoestrada/design-system/icons";
+
+<Button><Plus className="size-4" /> New project</Button>
+<Button shape="circle" aria-label="Add"><Plus className="size-5" /></Button>   {/* icon-only */}
+<Badge variant="success"><Check className="size-3.5" /> Paid</Badge>
+<Toggle label="Dark mode" iconOn={<Moon />} iconOff={<Sun />} />              {/* icons inside the switch */}
+<Alert icon={<Rocket className="size-5 shrink-0" />}>Deploy started</Alert>   {/* icon={null} hides it */}
+```
 
 ```tsx
 <ToastProvider>
@@ -93,6 +105,22 @@ Form controls forward refs, so they work with form libraries such as react-hook-
 const { toast } = useToast();
 toast({ title: "Saved", message: "Your changes are live.", variant: "success" });
 ```
+
+### Color picker
+
+```tsx
+import { ColorPicker } from "@bernardoestrada/design-system";
+
+<ColorPicker label="Color" value={color} onChange={setColor} />
+```
+
+| Size | Looks like |
+|---|---|
+| `long` (default) | Every preset visible, plus a color wheel for custom colors |
+| `md` | A field-style button (swatch + value); opens the presets, the wheel and a hex input |
+| `sm` | A swatch button; opens the presets and the wheel |
+
+`allowCustom` (default `true`) shows the color wheel, and in `md` the hex input. `allowNone` (default `false`) adds a "none" swatch that sets the value to `null`. `presets` takes any CSS colors, including theme variables like `var(--color-primary)`. The color wheel uses the browser's native color dialog.
 
 ## Icons
 
@@ -148,6 +176,9 @@ Useful props:
 | `maxResults` | `160` | Icons per page |
 | `inline` | `false` | Render the panel without a button |
 | `clearable` | `true` | Offer a "Clear" button |
+| `colorPicker` | `true` | Show a color picker that tints every icon in the picker |
+| `color` / `onColorChange` | `null` | The chosen icon color, so you can store it with the icon |
+| `colorPresets` | ColorPicker's palette | Colors offered in the picker |
 
 On screens narrower than 640 px the picker opens as a bottom sheet with touch-sized icons instead of a popover.
 

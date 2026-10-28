@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./Alert";
+import { Rocket, ShieldCheck, Sparkles, Wrench } from "lucide-react";
 
 const variants = ["info", "success", "warning", "error"] as const;
 
@@ -39,3 +40,30 @@ export const AllVariants: Story = {
 export const Dismissible: Story = {
   args: { variant: "warning", children: "Your trial ends in 3 days.", onClose: () => {} },
 };
+
+export const CustomIcon: Story = {
+  args: {
+    variant: "info",
+    icon: <Rocket className="size-5 shrink-0" />,
+    title: "Deploy started",
+    children: "We'll let you know when it's live.",
+  },
+};
+
+export const CustomIcons: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <Alert variant="success" icon={<ShieldCheck className="size-5 shrink-0" />}>
+        Two-factor authentication is on.
+      </Alert>
+      <Alert variant="warning" appearance="soft" icon={<Wrench className="size-5 shrink-0" />}>
+        Scheduled maintenance tonight at 22:00.
+      </Alert>
+      <Alert variant="info" appearance="outline" icon={<Sparkles className="size-5 shrink-0" />}>
+        New: export to PDF.
+      </Alert>
+    </div>
+  ),
+};
+
+export const NoIcon: Story = { args: { icon: null, children: "Pass icon={null} to hide the icon." } };

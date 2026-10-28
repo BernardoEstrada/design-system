@@ -8,6 +8,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   loading?: boolean;
   wide?: boolean;
+  /** Equal width and height, for icon-only buttons. Give those an aria-label. */
+  shape?: "square" | "circle";
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -18,6 +20,8 @@ const variantClasses: Record<ButtonVariant, string> = {
   outline: "btn-outline",
   neutral: "",
 };
+
+const shapeClasses = { square: "btn-square", circle: "btn-circle" } as const;
 
 const sizeClasses: Record<Exclude<ButtonSize, "md">, string> = {
   xs: "btn-xs",
@@ -30,6 +34,7 @@ export function Button({
   size = "md",
   loading = false,
   wide = false,
+  shape,
   className = "",
   children,
   disabled,
@@ -37,7 +42,7 @@ export function Button({
 }: ButtonProps) {
   const variantClass = variantClasses[variant];
   const sizeClass = size !== "md" ? sizeClasses[size] : "";
-  const classes = ["btn", variantClass, sizeClass, wide ? "btn-wide" : "", className]
+  const classes = ["btn", variantClass, sizeClass, wide ? "btn-wide" : "", shape ? shapeClasses[shape] : "", className]
     .filter(Boolean)
     .join(" ");
 

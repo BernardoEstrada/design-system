@@ -93,9 +93,16 @@ html[data-theme="navigator-light"] .bg-base-100:hover {
   backdrop-filter: none;
 }
 
-/* Native <option> lists inherit the select's (possibly translucent) fill in some
-   browsers; give them the theme's solid surface in every theme. */
-html[data-theme] select option {
+/* Open <select> lists. Where the browser supports customizable selects
+   (DaisyUI opts in with appearance: base-select), the list is ::picker(select),
+   which copies the select's fill, translucent in glass themes. Give the list a
+   solid surface and leave the options to DaisyUI. Elsewhere, style the options. */
+html[data-theme] select::picker(select) {
   background-color: var(--color-base-100);
-  color: var(--color-base-content);
+}
+@supports not (appearance: base-select) {
+  html[data-theme] select option {
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+  }
 }

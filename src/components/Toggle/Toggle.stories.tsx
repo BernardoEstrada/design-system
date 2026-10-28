@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Toggle } from "./Toggle";
+import { Check, Eye, EyeOff, Moon, Sun, Volume2, VolumeX, X } from "lucide-react";
 
 const variants = ["primary", "secondary", "accent", "success", "warning", "info", "error", "neutral"] as const;
 
@@ -38,3 +39,27 @@ export const AllSizes: Story = {
 };
 
 export const Disabled: Story = { args: { label: "Disabled", disabled: true, defaultChecked: true } };
+
+export const WithIcons: Story = {
+  args: { label: "Notifications", defaultChecked: true, iconOn: <Check />, iconOff: <X /> },
+};
+
+export const IconExamples: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <Toggle label="Dark mode" variant="neutral" iconOn={<Moon />} iconOff={<Sun />} />
+      <Toggle label="Sound" variant="success" defaultChecked iconOn={<Volume2 />} iconOff={<VolumeX />} />
+      <Toggle label="Visible" variant="info" iconOn={<Eye />} iconOff={<EyeOff />} />
+      <div className="flex items-center gap-4">
+        {variants.map((v) => (
+          <Toggle key={v} variant={v} defaultChecked aria-label={v} iconOn={<Check />} iconOff={<X />} />
+        ))}
+      </div>
+      <div className="flex items-center gap-4">
+        {(["xs", "sm", "md", "lg"] as const).map((s) => (
+          <Toggle key={s} size={s} defaultChecked aria-label={s} iconOn={<Check />} iconOff={<X />} />
+        ))}
+      </div>
+    </div>
+  ),
+};

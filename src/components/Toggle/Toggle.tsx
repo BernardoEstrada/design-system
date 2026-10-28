@@ -8,6 +8,10 @@ interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"
   label?: ReactNode;
   variant?: ToggleVariant;
   size?: ToggleSize;
+  /** Icon shown in the switch when on, e.g. <Check />. */
+  iconOn?: ReactNode;
+  /** Icon shown in the switch when off, e.g. <X />. */
+  iconOff?: ReactNode;
 }
 
 const variantClasses: Record<ToggleVariant, string> = {
@@ -29,17 +33,22 @@ const sizeClasses: Record<ToggleSize, string> = {
 };
 
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(function Toggle(
-  { label, variant = "primary", size = "md", className = "", ...props },
+  { label, variant = "primary", size = "md", iconOn, iconOff, className = "", ...props },
   ref,
 ) {
-  const input = (
-    <input
-      ref={ref}
-      type="checkbox"
-      className={cx("toggle", variantClasses[variant], sizeClasses[size], className)}
-      {...props}
-    />
-  );
+  const classes = cx("toggle", variantClasses[variant], sizeClasses[size], className);
+  // With icons, DaisyUI's toggle wraps the checkbox: the 2nd child shows when off,
+  // the 3rd when on. A span (not a label) so it can sit inside the outer label.
+  const input =
+    iconOn || iconOff ? (
+      <span className={classes}>
+        <input ref={ref} type="checkbox" {...props} />
+        {iconOff ?? <span />}
+        {iconOn ?? <span />}
+      </span>
+    ) : (
+      <input ref={ref} type="checkbox" className={classes} {...props} />
+    );
   if (!label) return input;
   return (
     <label className="label cursor-pointer gap-2">

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { cx } from "../../utils/cx";
 import { Button } from "../Button/Button";
 
@@ -41,6 +41,36 @@ const alignClasses: Record<DropdownAlign, string> = {
   end: "dropdown-end",
 };
 
+// DaisyUI aligns popovers with descendant selectors (`.dropdown-start .dropdown-content`),
+// so an outer dropdown's alignment also hits any dropdown nested inside it. Setting the
+// alignment on the popover itself keeps nested dropdowns independent.
+const alignStyles: Record<DropdownAlign, CSSProperties> = {
+  start: { insetInlineStart: 0, insetInlineEnd: "auto", translate: "0" },
+  center: { insetInlineStart: "auto", insetInlineEnd: "50%", translate: "50%" },
+  end: { insetInlineStart: "auto", insetInlineEnd: 0, translate: "0" },
+};
+
+// Small gap between the trigger and the popover, on the side it opens toward.
+const gapClasses: Record<DropdownPosition, string> = {
+  bottom: "mt-1",
+  top: "mb-1",
+  left: "mr-1",
+  right: "ml-1",
+};
+
+// With customizable selects (appearance: base-select), Esc that closes an open
+// select list also reaches the page. It belongs to the select, not the dropdown.
+// Focus is usually on the highlighted <option>, so look up its <select>.
+function isOpenSelect(target: EventTarget | null): boolean {
+  const select = target instanceof Element ? target.closest("select") : null;
+  if (!select) return false;
+  try {
+    return select.matches(":open");
+  } catch {
+    return false; // no :open support means no customizable select, so Esc never gets here
+  }
+}
+
 export function Dropdown({
   trigger,
   triggerVariant = "neutral",
@@ -69,8 +99,10 @@ export function Dropdown({
     const onPointer = (e: PointerEvent) => {
       if (!root.current?.contains(e.target as Node)) setOpen(false);
     };
+    // Esc pressed inside the dropdown is handled by onKeyDown below, so nested
+    // dropdowns close one at a time. This catches Esc with focus elsewhere.
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape" && !isOpenSelect(e.target) && !root.current?.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("pointerdown", onPointer);
     document.addEventListener("keydown", onKey);
@@ -83,6 +115,13 @@ export function Dropdown({
   return (
     <div
       ref={root}
+      onKeyDown={(e) => {
+        // The innermost open dropdown handles Esc and marks it handled for the ones around it.
+        if (e.key !== "Escape" || !open || e.defaultPrevented || isOpenSelect(e.target)) return;
+        e.preventDefault();
+        setOpen(false);
+        root.current?.querySelector<HTMLButtonElement>(":scope > button")?.focus();
+      }}
       className={cx(
         "dropdown",
         positionClasses[position],
@@ -101,7 +140,11 @@ export function Dropdown({
       >
         {trigger}
       </Button>
-      <div className="dropdown-content z-10 mt-1">
+      <div
+        className={cx("dropdown-content z-10", gapClasses[position])}
+        // Left/right popovers are positioned by their side classes alone.
+        style={position === "top" || position === "bottom" ? alignStyles[align] : undefined}
+      >
         {children ?? (
           <ul role="menu" className="menu bg-base-100 rounded-box w-52 p-2 shadow-sm">
             {items?.map((item, i) => (

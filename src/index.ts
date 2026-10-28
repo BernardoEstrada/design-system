@@ -12,6 +12,12 @@ export { Textarea } from "./components/Textarea/Textarea";
 export { Checkbox } from "./components/Checkbox/Checkbox";
 export { Radio } from "./components/Radio/Radio";
 export { Toggle } from "./components/Toggle/Toggle";
+export {
+  ColorPicker,
+  defaultColorPresets,
+  type ColorPreset,
+  type ColorPickerSize,
+} from "./components/ColorPicker/ColorPicker";
 
 // Feedback
 export { Alert, type AlertVariant } from "./components/Alert/Alert";

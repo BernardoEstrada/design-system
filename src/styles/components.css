@@ -1,0 +1,28 @@
+/* ─── Component fixes on top of DaisyUI ──────────────────────────────────── */
+
+/* Toggle with icons: the checkbox sits inside a .toggle wrapper. DaisyUI colors
+   the "on" state only for a checked .toggle itself, so mirror its variant
+   colors for a wrapper whose checkbox is checked. */
+.toggle-primary:has(> input:checked) { --input-color: var(--color-primary); }
+.toggle-secondary:has(> input:checked) { --input-color: var(--color-secondary); }
+.toggle-accent:has(> input:checked) { --input-color: var(--color-accent); }
+.toggle-neutral:has(> input:checked) { --input-color: var(--color-neutral); }
+.toggle-success:has(> input:checked) { --input-color: var(--color-success); }
+.toggle-warning:has(> input:checked) { --input-color: var(--color-warning); }
+.toggle-info:has(> input:checked) { --input-color: var(--color-info); }
+.toggle-error:has(> input:checked) { --input-color: var(--color-error); }
+
+/* Keep keyboard focus visible on the wrapper (DaisyUI hides the inner input's outline). */
+.toggle:has(> input:focus-visible) {
+  outline: 2px solid var(--input-color);
+  outline-offset: 2px;
+}
+
+/* Let toggle icons fill the knob instead of sizing it. Icons like Lucide's
+   default to 24px, which would stretch the knob past the track on small
+   toggles or themes with thick borders. */
+.toggle > :not(input) {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}

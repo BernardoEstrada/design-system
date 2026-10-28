@@ -15,6 +15,7 @@ import { lucideCanonicalNames } from "../../icons/lucide-names";
 import { cx } from "../../utils/cx";
 import { DynamicIcon, type IconName } from "../DynamicIcon/DynamicIcon";
 import { Button } from "../Button/Button";
+import { ColorPicker, type ColorPreset } from "../ColorPicker/ColorPicker";
 import { Dropdown } from "../Dropdown/Dropdown";
 import { Modal } from "../Modal/Modal";
 import { Field } from "../Field/Field";
@@ -175,6 +176,10 @@ interface PanelProps {
   columns: number;
   /** Larger, touch-sized controls and a grid that fills the available width. */
   touch: boolean;
+  color: string | null;
+  onColorChange: (color: string | null) => void;
+  colorPicker: boolean;
+  colorPresets?: Array<ColorPreset | string>;
   /** Focus the search box when this becomes true. */
   autoFocus: boolean;
 }
@@ -189,6 +194,10 @@ function IconPickerPanel({
   categoryFilter,
   columns,
   touch,
+  color,
+  onColorChange,
+  colorPicker,
+  colorPresets,
   autoFocus,
 }: PanelProps) {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -314,7 +323,7 @@ function IconPickerPanel({
           )}
           {categoryFilter && (
             <select
-              className={cx("select min-w-32 flex-1", touch ? "select-sm text-base" : "select-xs")}
+              className={cx("select min-w-24 flex-1", touch ? "select-sm text-base" : "select-xs")}
               aria-label="Category"
               value={category}
               disabled={!indexReady}
@@ -354,12 +363,20 @@ function IconPickerPanel({
               className={cx(
                 "btn btn-square",
                 touch ? "size-11 justify-self-center" : "btn-sm",
-                name === value ? "btn-primary" : "btn-ghost",
+                // With a custom color, mark the selection with a ring so the icon keeps its color.
+                name === value ? (color ? "btn-ghost ring-primary bg-base-200 ring-2" : "btn-primary") : "btn-ghost",
               )}
               onClick={() => onSelect(name)}
               onKeyDown={(e) => onCellKey(e, i)}
             >
-              <DynamicIcon name={name} className={touch ? "size-6" : "size-5"} aria-hidden fallback={CellPlaceholder} />
+              {/* Color goes on the icon itself: some themes set their own text color on ghost buttons. */}
+              <DynamicIcon
+                name={name}
+                className={touch ? "size-6" : "size-5"}
+                style={color ? { color } : undefined}
+                aria-hidden
+                fallback={CellPlaceholder}
+              />
             </button>
           ))}
           {loadMore && hasMore && (
@@ -375,17 +392,32 @@ function IconPickerPanel({
         </p>
       )}
 
-      <div className="flex items-center justify-between gap-2 text-xs opacity-70">
-        <span aria-live="polite">
+      <div className="flex items-center gap-2 text-xs">
+        <span aria-live="polite" className="opacity-70">
           {hasMore
             ? `Showing ${shown.length} of ${results.length}.${loadMore ? "" : " Keep typing to narrow."}`
             : `${results.length} icon${results.length === 1 ? "" : "s"}`}
         </span>
-        {clearable && value && (
-          <button type="button" className="btn btn-ghost btn-xs" onClick={() => onSelect(null)}>
-            Clear
-          </button>
-        )}
+        <div className="ml-auto flex items-center gap-1">
+          {clearable && value && (
+            <button type="button" className="btn btn-ghost btn-xs opacity-70" onClick={() => onSelect(null)}>
+              Clear
+            </button>
+          )}
+          {colorPicker && (
+            // Opens upward: the footer sits at the bottom of the panel (and of the screen on phones).
+            <ColorPicker
+              size="sm"
+              aria-label="Icon color"
+              allowNone
+              value={color}
+              onChange={onColorChange}
+              presets={colorPresets}
+              align="end"
+              position="top"
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -413,6 +445,14 @@ interface IconPickerProps {
   loadMore?: boolean;
   /** Show the category dropdown. Default true. */
   categoryFilter?: boolean;
+  /** Show a color picker that tints every icon in the picker. Default true. */
+  colorPicker?: boolean;
+  /** Icon color (any CSS color), or null for the current text color. */
+  color?: string | null;
+  defaultColor?: string | null;
+  onColorChange?: (color: string | null) => void;
+  /** Presets for the color picker. Defaults to ColorPicker's palette. */
+  colorPresets?: Array<ColorPreset | string>;
   columns?: number;
   className?: string;
 }
@@ -431,12 +471,23 @@ export function IconPicker({
   maxResults = 160,
   loadMore = true,
   categoryFilter = true,
+  colorPicker = true,
+  color: colorProp,
+  defaultColor = null,
+  onColorChange,
+  colorPresets,
   columns = 8,
   className = "",
 }: IconPickerProps) {
   const [internal, setInternal] = useState<string | null>(defaultValue);
   const [open, setOpen] = useState(false);
   const value = valueProp === undefined ? internal : valueProp;
+  const [internalColor, setInternalColor] = useState<string | null>(defaultColor);
+  const color = colorProp === undefined ? internalColor : colorProp;
+  const changeColor = (c: string | null) => {
+    if (colorProp === undefined) setInternalColor(c);
+    onColorChange?.(c);
+  };
 
   const select = (name: string | null) => {
     if (valueProp === undefined) setInternal(name);
@@ -455,12 +506,18 @@ export function IconPicker({
     categoryFilter,
     columns,
     touch: small,
+    color,
+    onColorChange: changeColor,
+    colorPicker,
+    colorPresets,
   };
 
   const triggerContent: ReactNode = (
     <>
       <span className="flex items-center gap-2">
-        {value && <DynamicIcon name={value as IconName} className="size-4" aria-hidden />}
+        {value && (
+          <DynamicIcon name={value as IconName} className="size-4" style={{ color: color ?? undefined }} aria-hidden />
+        )}
         <span className={value ? undefined : "opacity-60"}>{value ?? placeholder}</span>
       </span>
       <ChevronDown className="size-4 opacity-60" aria-hidden />

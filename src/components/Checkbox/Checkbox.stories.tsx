@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
+import { Bell, Lock, Mail, Moon } from "lucide-react";
 
 const variants = ["primary", "secondary", "accent", "success", "warning", "info", "error", "neutral"] as const;
 
@@ -38,3 +39,43 @@ export const AllSizes: Story = {
 };
 
 export const Disabled: Story = { args: { label: "Disabled", disabled: true, defaultChecked: true } };
+
+export const WithIcons: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      <Checkbox
+        defaultChecked
+        label={
+          <span className="flex items-center gap-2">
+            <Mail className="size-4 opacity-70" /> Email updates
+          </span>
+        }
+      />
+      <Checkbox
+        variant="secondary"
+        label={
+          <span className="flex items-center gap-2">
+            <Bell className="size-4 opacity-70" /> Push notifications
+          </span>
+        }
+      />
+      <Checkbox
+        variant="accent"
+        defaultChecked
+        label={
+          <span className="flex items-center gap-2">
+            <Moon className="size-4 opacity-70" /> Quiet hours
+          </span>
+        }
+      />
+      <Checkbox
+        disabled
+        label={
+          <span className="flex items-center gap-2">
+            <Lock className="size-4 opacity-70" /> Admin only
+          </span>
+        }
+      />
+    </div>
+  ),
+};
