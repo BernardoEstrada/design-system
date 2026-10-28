@@ -97,12 +97,22 @@ interface PanelProps {
   sources: IconSource[];
   clearable: boolean;
   maxResults: number;
+  loadMore: boolean;
   columns: number;
   /** Focus the search box when this becomes true. */
   autoFocus: boolean;
 }
 
-function IconPickerPanel({ value, onSelect, sources, clearable, maxResults, columns, autoFocus }: PanelProps) {
+function IconPickerPanel({
+  value,
+  onSelect,
+  sources,
+  clearable,
+  maxResults,
+  loadMore,
+  columns,
+  autoFocus,
+}: PanelProps) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<IconSource | "all">("all");
   const deferredQuery = useDeferredValue(query);
@@ -132,7 +142,24 @@ function IconPickerPanel({ value, onSelect, sources, clearable, maxResults, colu
     () => searchIcons(deferredQuery, sourcesKey.split(",") as IconSource[]),
     [deferredQuery, sourcesKey, tagsVersion],
   );
-  const shown = results.slice(0, maxResults);
+  // The visible count resets whenever the search or icon set changes.
+  const searchKey = `${deferredQuery}|${sourcesKey}`;
+  const [page, setPage] = useState({ key: searchKey, limit: maxResults });
+  const limit = page.key === searchKey ? page.limit : maxResults;
+  const shown = results.slice(0, limit);
+  const hasMore = results.length > shown.length;
+
+  // After "Load more", move focus to the first new icon (the button may disappear).
+  const focusAfterLoad = useRef<number | null>(null);
+  useEffect(() => {
+    if (focusAfterLoad.current === null) return;
+    cellRefs.current[focusAfterLoad.current]?.focus();
+    focusAfterLoad.current = null;
+  }, [limit]);
+  const showMore = () => {
+    focusAfterLoad.current = shown.length;
+    setPage({ key: searchKey, limit: limit + maxResults });
+  };
 
   const focusCell = (i: number) => cellRefs.current[Math.max(0, Math.min(i, shown.length - 1))]?.focus();
 
@@ -208,6 +235,11 @@ function IconPickerPanel({ value, onSelect, sources, clearable, maxResults, colu
               <DynamicIcon name={name} className="size-5" aria-hidden fallback={CellPlaceholder} />
             </button>
           ))}
+          {loadMore && hasMore && (
+            <button type="button" className="btn btn-ghost btn-sm col-span-full mt-1" onClick={showMore}>
+              Load {Math.min(maxResults, results.length - shown.length)} more
+            </button>
+          )}
         </div>
       ) : (
         <p className="py-6 text-center text-sm opacity-70">No icons match “{query}”.</p>
@@ -215,8 +247,8 @@ function IconPickerPanel({ value, onSelect, sources, clearable, maxResults, colu
 
       <div className="flex items-center justify-between gap-2 text-xs opacity-70">
         <span aria-live="polite">
-          {results.length > shown.length
-            ? `Showing ${shown.length} of ${results.length}. Keep typing to narrow.`
+          {hasMore
+            ? `Showing ${shown.length} of ${results.length}.${loadMore ? "" : " Keep typing to narrow."}`
             : `${results.length} icon${results.length === 1 ? "" : "s"}`}
         </span>
         {clearable && value && (
@@ -245,8 +277,10 @@ interface IconPickerProps {
   clearable?: boolean;
   /** Render the search panel directly instead of behind a button. */
   inline?: boolean;
-  /** Cap on rendered results; the rest are reachable by searching. Default 160. */
+  /** Icons rendered at a time; also the "Load more" page size. Default 160. */
   maxResults?: number;
+  /** Show a "Load more" button below the results. When false, the rest are only reachable by searching. Default true. */
+  loadMore?: boolean;
   columns?: number;
   className?: string;
 }
@@ -263,6 +297,7 @@ export function IconPicker({
   clearable = true,
   inline = false,
   maxResults = 160,
+  loadMore = true,
   columns = 8,
   className = "",
 }: IconPickerProps) {
@@ -276,7 +311,7 @@ export function IconPicker({
     setOpen(false);
   };
 
-  const panelProps = { value, onSelect: select, sources, clearable, maxResults, columns };
+  const panelProps = { value, onSelect: select, sources, clearable, maxResults, loadMore, columns };
 
   return (
     <Field label={label} error={error} hint={hint}>

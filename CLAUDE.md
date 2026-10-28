@@ -58,7 +58,7 @@ Extended themes (navigator, command) also define component-level CSS variables c
 
 ```css
 @import "tailwindcss";
-@plugin "daisyui" { themes: none; }   /* built-in themes disabled; all themes are custom */
+@plugin "daisyui" { themes: all; }   /* custom themes below plus every DaisyUI built-in */
 
 @import "./themes/navigator.css";
 @import "./themes/command.css";

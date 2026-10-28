@@ -1,6 +1,6 @@
 {
   "name": "@bernardoestrada/design-system",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "React + DaisyUI v5 component library and theme collection",
   "license": "MIT",
   "repository": {
@@ -52,7 +52,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "icons": "node scripts/gen-icons.mjs"
+    "icons": "node scripts/gen-icons.mjs",
+    "icons:update": "node scripts/update-icons.mjs"
   },
   "peerDependencies": {
     "react": ">=18",
