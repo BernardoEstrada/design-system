@@ -4,6 +4,13 @@ import "./index.css";
 export { Button } from "./components/Button/Button";
 export { Badge } from "./components/Badge/Badge";
 export { Card } from "./components/Card/Card";
+export {
+  MaskableIcon,
+  MaskablePreview,
+  ICON_SHAPES,
+  ICON_SHAPE_NAMES,
+  type IconShape,
+} from "./components/MaskablePreview/MaskablePreview";
 
 // Form controls
 export { Input } from "./components/Input/Input";
@@ -12,6 +19,8 @@ export { Textarea } from "./components/Textarea/Textarea";
 export { Checkbox } from "./components/Checkbox/Checkbox";
 export { Radio } from "./components/Radio/Radio";
 export { Toggle } from "./components/Toggle/Toggle";
+export { ChipGroup, type ChipOption } from "./components/ChipGroup/ChipGroup";
+export { FileDrop } from "./components/FileDrop/FileDrop";
 export {
   ColorPicker,
   defaultColorPresets,
