@@ -243,3 +243,31 @@ const getPreferredAppearance = (): Exclude<Appearance, Appearance.SYSTEM> =>
   window.matchMedia("(prefers-color-scheme: dark)").matches
     ? Appearance.DARK
     : Appearance.LIGHT;
+
+export interface ThemeInfo {
+  id: Themes;
+  /** Display name, e.g. "CRT 1990". */
+  name: string;
+  category: ThemeCategory;
+  light?: ThemeId;
+  dark?: ThemeId;
+}
+
+const titleCase = (id: string) =>
+  id
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+
+/** Every theme family with a display name, in category order (app, editor, daisyui). */
+export function listThemes(categories: readonly ThemeCategory[] = ThemeCategory): ThemeInfo[] {
+  return categories.flatMap((category) =>
+    Object.entries(CategorizedThemes[category]).map(([id, t]) => ({
+      id: id as Themes,
+      name: t?.name ?? titleCase(id),
+      category,
+      light: t?.light,
+      dark: t?.dark,
+    })),
+  );
+}

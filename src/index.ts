@@ -40,4 +40,14 @@ export { Dropdown, type DropdownItem } from "./components/Dropdown/Dropdown";
 export { Tabs, type TabItem } from "./components/Tabs/Tabs";
 export { Tooltip } from "./components/Tooltip/Tooltip";
 
-export { Themes, DEFAULT_THEME, Appearance, applyTheme } from "./themes/index";
+export {
+  Themes,
+  DEFAULT_THEME,
+  Appearance,
+  applyTheme,
+  ThemeCategory,
+  CategorizedThemes,
+  listThemes,
+  type ThemeInfo,
+} from "./themes/index";
+export { ThemePicker } from "./components/ThemePicker/ThemePicker";
