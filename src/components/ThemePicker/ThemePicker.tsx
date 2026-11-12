@@ -78,8 +78,11 @@ function ThemeCard({ theme, appearance, selected, onSelect }: { theme: ThemeInfo
       data-theme={preview}
       onClick={onSelect}
       aria-pressed={selected}
+      // Paint the previewed theme's own colours directly: app-theme overrides (e.g. glass
+      // backgrounds) use variables other themes don't define, so bg-base-100 would leak the page's.
+      style={{ background: "var(--color-base-100)", color: "var(--color-base-content)" }}
       className={cx(
-        "rounded-box border-2 bg-base-100 p-3 text-left text-base-content transition",
+        "rounded-box border-2 p-3 text-left transition",
         selected ? "border-primary" : "border-base-300 hover:border-base-content/30",
       )}
     >
